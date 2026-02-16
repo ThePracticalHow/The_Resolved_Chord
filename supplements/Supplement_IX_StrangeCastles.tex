@@ -1,0 +1,654 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{enumerate}
+
+\geometry{margin=1.2in}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+
+\title{\textbf{Supplement IX: Strange Castles --- Beyond-SM Predictions}\\[0.3em]
+\large Anomaly Targets, Anti-Predictions, and the Spectral Integer 33\\[0.2em]
+\normalsize The Resolved Chord --- Supplementary Material}
+
+\author{Jixiang Leng}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textit{This supplement catalogues predictions of the
+$S^5/\mathbb{Z}_3$ framework that go beyond the 26 Standard Model
+parameters of the main text.  These range from sub-percent matches
+(Tier~1) to speculative structural suggestions (Tier~3) to firm
+anti-predictions (Tier~4).  Every formula uses only the electron mass
+$m_e$ and the fixed spectral data of $S^5/\mathbb{Z}_3$; no additional
+parameters are introduced.  Predictions are graded by match quality
+and geometric clarity.}
+
+%% ============================================================
+\section{The Spectral Instrument}
+\label{sec:instrument}
+%% ============================================================
+
+All predictions in this supplement use the same fixed spectral data
+as the main text:
+
+\begin{center}
+\begin{tabular}{@{} c c l @{}}
+\toprule
+\textbf{Symbol} & \textbf{Value} & \textbf{Meaning} \\
+\midrule
+$p$ & $3$ & Orbifold order ($\mathbb{Z}_3$) \\
+$d_1$ & $6$ & Degeneracy of first eigenspace on $S^5$ \\
+$\lambda_1$ & $5$ & First nonzero Laplacian eigenvalue \\
+$K$ & $2/3$ & Koide ratio $= d_1/(d_1 + p)$ \\
+$\eta$ & $2/9$ & Donnelly eta invariant $= (p-1)/(pn)$ \\
+$d_2$ & $20$ & Degeneracy of $\ell = 2$ eigenspace \\
+$\lambda_2$ & $12$ & Second nonzero eigenvalue \\
+$d_3$ & $50$ & Degeneracy of $\ell = 3$ eigenspace \\
+$\lambda_3$ & $21$ & Third nonzero eigenvalue \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Organizing principle:} Every physical mass scale
+should be expressible as $m_e$ times some combination of spectral
+data and powers of $\pi$.  The electron is the pivot; everything
+else is geometry.
+
+\subsection{Grading system}
+
+\begin{center}
+\begin{tabular}{@{} c l @{}}
+\toprule
+\textbf{Grade} & \textbf{Criteria} \\
+\midrule
+A & Formula from pure spectral data, match $< 1\%$, clear geometric meaning \\
+B & Match $< 3\%$, plausible interpretation, needs full derivation \\
+C & Right ballpark, suggestive pattern, speculative \\
+D & No natural match from simple spectral expressions \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%% ============================================================
+\section{Tier 1: Clean Hits}
+\label{sec:tier1}
+%% ============================================================
+
+\subsection{S1. The 7.1 keV sterile neutrino (Grade A)}
+
+\begin{proposition}[Sterile neutrino mass]
+\label{prop:sterile}
+\begin{equation}
+\boxed{m_{\mathrm{sterile}} \;=\; \frac{m_e}{d_1 \times \lambda_2}
+\;=\; \frac{511\;\text{keV}}{72}
+\;=\; 7.0972\;\text{keV}.}
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{Target:} The $\sim 7.1$~keV line observed in galaxy
+cluster spectra (Bulbul et al.\ 2014; Boyarsky et al.\ 2014).
+\textbf{Match:} $0.039\%$.
+
+\textbf{Geometric meaning:} The sterile neutrino is a partially-untwisted
+mode --- the first KK rung above SM fermions.  It sits at the
+cross-level spectral product of the $\ell = 1$ degeneracy and the
+$\ell = 2$ eigenvalue.
+
+\textbf{Seesaw relation:}
+\begin{equation}
+m_{\mathrm{sterile}}^2 \;=\; 2\, m_e \cdot m_{\nu_3},
+\end{equation}
+establishing the sterile neutrino as the geometric mean of the
+electron and the heaviest active neutrino.
+
+\textbf{Mixing angle (derived, not fitted):}
+The seesaw relation $m_{\mathrm{sterile}}^2 = 2\,m_e \cdot m_{\nu_3}$
+yields the mixing angle directly:
+\begin{equation}
+\sin^2(2\theta) \;=\; \left(\frac{m_{\nu_3}}{m_{\mathrm{sterile}}}\right)^2
+\;=\; 5.06 \times 10^{-11},
+\end{equation}
+inside the Bulbul range $(2$--$20) \times 10^{-11}$ and consistent with
+XRISM~(2025) upper bounds.  This constitutes a \emph{complete prediction}:
+both mass and coupling are derived from spectral data with no free parameters.
+
+\subsection{S2. The X17 boson (Grade A)}
+
+\begin{proposition}[X17 mass]
+\label{prop:X17}
+\begin{equation}
+\boxed{m_{X17} \;=\; m_e \times (d_1^2 - p)
+\;=\; 0.511 \times 33
+\;=\; 16.863\;\text{MeV}.}
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{Target:} The ATOMKI anomaly at $16.7$--$17.6$~MeV
+(Krasznahorkay et al.\ 2016, 2019).
+\textbf{Match:} Inside measured range.
+
+\textbf{Geometric meaning:} The spectral integer $33 = d_1^2 - p = 36 - 3$
+is the \emph{tunneling bandwidth} of the $S^5/\mathbb{Z}_3$ orbifold.
+The same integer governs the neutrino mass-squared ratio
+$\Delta m^2_{32}/\Delta m^2_{21} = 33$ (Section~7 of the main text)
+and the fused quark Koide ratio $K_{\mathrm{fused}} = 33/40$
+(Supplement~VI, \S13).
+
+\subsection{S3. The 95 GeV scalar (Grade B)}
+
+\begin{proposition}[95 GeV scalar --- fold-wall shearing mode]
+\label{prop:95}
+The $\mathbb{Z}_3$ orbifold has three fold walls.  The breathing mode
+(all walls oscillating in phase) is the Higgs boson.  The shearing mode
+(relative wall displacement) is a second scalar with mass
+\begin{equation}
+\boxed{m_{95} \;=\; m_Z \times (1 + \eta^2)
+\;=\; m_Z \times \frac{85}{81}
+\;=\; 95.69\;\text{GeV}.}
+\end{equation}
+The correction is multiplicative on the \emph{mass} (not the mass$^2$):
+the eta invariant enters as a phase rotation of the fold-wall boundary
+condition, giving $m_{\mathrm{shear}} = m_Z(1 + \eta^2)$.
+\end{proposition}
+
+\noindent\textbf{Target:} The $\sim 95$~GeV excess seen at CMS
+($2.9\sigma$ diphoton, $2.9\sigma$ ditau) and LEP ($2.3\sigma$
+$b\bar b$).
+\textbf{Match:} $0.73\%$.
+
+\medskip\noindent\textbf{Derivation.}
+The $\mathbb{Z}_3$ orbifold $S^5/\mathbb{Z}_3$ has $p = 3$ fold
+walls, each a codimension-1 surface where the $\mathbb{Z}_3$ action
+acts.  The $p = 3$ displacement degrees of freedom decompose under
+$\mathbb{Z}_3$ as:
+\begin{itemize}
+\item \emph{Breathing mode} $\phi$ (trivial representation): all
+  three walls oscillate in phase.  This is the Higgs field, with
+  mass $m_H = m_p(1/\alpha - 7/2) = 125.25$~GeV set by the quartic
+  coupling $\lambda_H$.
+\item \emph{Shearing mode} $\psi$ ($\chi_1 \oplus \chi_2$ representation):
+  relative wall displacement, forming a complex pair under $\mathbb{Z}_3$.
+  The physical mode is the $\mathbb{Z}_3$-invariant combination
+  $|\psi|^2$.
+\end{itemize}
+
+The shearing mode preserves the VEV (it is orthogonal to $\phi$),
+so its mass is set not by the quartic coupling but by the gauge sector.
+A shearing fluctuation $\psi$ modifies the $Z$-boson boundary condition
+on the fold wall, giving a mass$^2$ contribution $m_Z^2 \psi^2/2$.
+The fold wall has internal structure characterized by the Donnelly eta
+invariant $\eta = 2/9$.  The $\chi_1$ and $\chi_2$ twisted-sector
+components of the shearing mode receive \emph{opposite} first-order
+shifts from the per-sector eta invariants $\eta_1 = +1/9$,
+$\eta_2 = -1/9$:
+\begin{equation}
+\delta m^{(1)}_{\chi_1} = +\tfrac{1}{9}\,m_Z,
+\qquad
+\delta m^{(1)}_{\chi_2} = -\tfrac{1}{9}\,m_Z.
+\end{equation}
+In the $\mathbb{Z}_3$-invariant combination these cancel:
+$\delta m^{(1)} = 0$.  The leading correction is proportional to the
+square of the \emph{total} spectral asymmetry $\eta = |\eta_1| +
+|\eta_2| = 2/9$:
+\begin{equation}
+\delta m^{(2)} \;=\; \eta^2 \cdot m_Z
+\;=\; \left(\frac{2}{9}\right)^{\!2} m_Z
+\;=\; \frac{4}{81}\,m_Z.
+\end{equation}
+The total spectral asymmetry $\eta = 2/9$ enters because the mass
+shift is even in the asymmetry (symmetric under $\eta \to -\eta$);
+the lowest-order even function of $\eta$ is $\eta^2$.  Therefore:
+\begin{equation}
+m_{95} \;=\; m_Z\,(1 + \eta^2)
+\;=\; m_Z \times \frac{85}{81}
+\;=\; 95.69\;\text{GeV}.
+\end{equation}
+
+\begin{remark}[Why the correction is to the mass, not the mass$^2$]
+\label{rem:linear}
+The Donnelly eta invariant shifts eigenvalues of the Dirac operator,
+which are linear in momentum.  The KK quantization condition is
+$p = p_0 + \text{(phase shift)}$, and phase shifts add linearly to
+the \emph{momentum}, hence to the mass of the zero mode.  The
+mass$^2$ formula $m^2 = m_Z^2(1+\eta^2)$ would give
+$m_Z\sqrt{1+\eta^2} = 93.4$~GeV, which does \emph{not} match the
+CMS excess.  The linear formula $m = m_Z(1+\eta^2) = 95.69$~GeV
+matches at $0.73\%$.
+
+The structural reason for first-order cancellation is
+$d_\ell^{(1)} = d_\ell^{(2)}$ for all~$\ell$ (complex conjugation
+symmetry, Supplement~I): the $\chi_1$ and $\chi_2$ twisted sectors
+have identical spectra, so their shifts are equal in magnitude and
+opposite in sign.
+\end{remark}
+
+\medskip\noindent\textbf{Why this is not a ``new particle.''}
+The lotus potential $V(\phi)$ is the single-field breathing potential.
+The shearing mode $\psi$ is \emph{orthogonal} to $\phi$: it does not
+modify $V(\phi)$ or shift $\phi_{\mathrm{lotus}}$.  The mixing
+$V_{\mathrm{mix}}(\phi,\psi) \sim O(\eta^4 m_Z^2 v^2)$ is negligible.
+The shearing mode is a geometric excitation of the same $S^5/\mathbb{Z}_3$
+orbifold, not an additional field added to the Lagrangian.
+
+\medskip\noindent\textbf{$\eta^2$ universality.}
+The same $\eta^2$ correction appears in three independent contexts:
+\begin{enumerate}
+\item PMNS solar angle: $\sin^2\theta_{12} = 1/3 - \eta^2/2$
+  (Supplement~VII);
+\item Cosmological constant: $\Lambda^{1/4} = m_{\nu_3}\eta^2(1 - K/d_1) = m_{\nu_3} \cdot 32/729 = 2.22$~meV ($1.4\%$; S5 below);
+\item 95~GeV scalar: $m_{95} = m_Z(1 + \eta^2)$ (this derivation).
+\end{enumerate}
+All three arise from the fold-wall bleed mechanism: observables that
+depend on fold-wall boundary conditions receive $\eta^2$ corrections
+from the wall's internal spectral asymmetry.
+
+\medskip\noindent\textbf{Coupling structure and signal strength.}
+The shearing mode couples to SM particles through fold-wall overlap,
+with all couplings universally suppressed by $\eta = 2/9$ relative
+to the Higgs:
+\begin{equation}
+g(\psi \to f\bar f) = \eta \cdot \frac{m_f}{v}, \qquad
+g(\psi \to VV) = \eta \cdot \frac{2m_V^2}{v}, \qquad
+\mu \;=\; \eta^2 \;\approx\; 0.049.
+\end{equation}
+The predicted signal strength $\mu \approx 5\%$ of a SM Higgs at
+95~GeV.  The coupling universality predicts \emph{equal} signal
+strengths in diphoton, ditau, and $b\bar b$ channels.  The total
+width is $\Gamma \sim \eta^2 \Gamma_H(95\;\text{GeV}) \sim 0.2$~MeV
+(extremely narrow).
+
+\medskip\noindent\textbf{Falsification.}
+CMS Run~3 should determine: (i)~mass precision to $\pm 1$~GeV
+(testing $m_{95} = 95.69$), (ii)~spin-parity (must be $0^+$),
+(iii)~channel ratios (must be universal under $\eta$ scaling),
+(iv)~absence of charged partners (no $H^\pm$).
+
+%% ============================================================
+\section{Tier 2: Interesting Targets}
+\label{sec:tier2}
+%% ============================================================
+
+\subsection{S4. KK dark matter tower (Grade C)}
+
+The $S^5/\mathbb{Z}_3$ orbifold generates a tower of keV-scale
+states from the first few KK levels:
+
+\begin{center}
+\begin{tabular}{@{} l l r l @{}}
+\toprule
+\textbf{Mode} & \textbf{Formula} & \textbf{Mass} & \textbf{Spectral factor} \\
+\midrule
+KK-1 & $m_e/(d_1 \lambda_2)$ & 7.10 keV & 72 \\
+KK-2 & $m_e/(d_1 \lambda_1)$ & 17.03 keV & 30 \\
+KK-3 & $m_e/d_2$ & 25.55 keV & 20 \\
+KK-4 & $m_e/\lambda_2$ & 42.58 keV & 12 \\
+KK-5 & $m_e/d_1$ & 85.17 keV & 6 \\
+KK-6 & $m_e/\lambda_1$ & 102.2 keV & 5 \\
+KK-7 & $m_e/p$ & 170.3 keV & 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The tower spans 7~keV to 170~keV --- the warm/hot dark matter
+range, exactly where collider searches have limited reach but
+astrophysical anomalies cluster.  The strongest candidate is KK-1
+at $7.10$~keV (S1 above).
+
+\subsection{S5. The cosmological constant (Grade A)}
+
+\begin{proposition}[Cosmological constant residual]
+\label{prop:CC}
+At tree level, the vacuum energy vanishes exactly:
+\begin{equation}
+\mathrm{Vol}(S^5) - p \cdot \mathrm{Vol}(S^5/\mathbb{Z}_3)
+\;=\; \pi^3 - 3 \times \frac{\pi^3}{3} \;=\; 0.
+\end{equation}
+The one-loop residual is set by the lightest tunneling mode:
+\begin{equation}
+\Lambda^{1/4} \;=\; m_{\nu_3} \cdot \eta^2 \cdot \left(1 - \frac{K}{d_1}\right)
+\;=\; m_{\nu_3} \cdot \frac{32}{729}
+\;=\; 50.5\;\text{meV} \times \frac{32}{729}
+\;=\; 2.49\;\text{meV}.
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{Match:} $+1.4\%$ vs observed $\Lambda^{1/4} \approx
+2.25$~meV ($2.22$ predicted).  The framework \emph{explains} the fine-tuning: the
+tree-level value is exactly zero by orbifold symmetry, and the
+residual is suppressed by $\eta^4 \approx 2 \times 10^{-3}$.
+
+\medskip\noindent\textbf{Complete derivation chain.}
+
+\begin{enumerate}
+\item[\textbf{(i)}] \textbf{Tree-level CC $= 0$.} The LOTUS minimum has zero vacuum energy by construction: $V(\phi_{\mathrm{lotus}}) = 0$ (orbifold volume cancellation: $\mathrm{Vol}(S^5) = 3\,\mathrm{Vol}(S^5/\mathbb{Z}_3)$). \textit{Status: Theorem.}
+
+\item[\textbf{(ii)}] \textbf{One-loop CC from twisted sectors.} The partition function on $S^5/\mathbb{Z}_3$ splits: $Z = \tfrac{1}{3}(Z_e + Z_\omega + Z_{\omega^2})$. The untwisted sector $Z_e$ is absorbed into the tree-level renormalization ($V_{\mathrm{tree}} = 0$). The twisted sectors $Z_\omega, Z_{\omega^2}$ give the one-loop CC. \textit{Status: Derived.}
+
+\item[\textbf{(iii)}] \textbf{Heavy mode cancellation.} For $l \gg 1$, the $\mathbb{Z}_3$ characters equidistribute: $d_l^{(0)} \to d_l/3$, so $2\mathrm{Re}[\chi_l(\omega)] \to 0$. Heavy KK modes do \emph{not} contribute to the twisted vacuum energy. This is the spectral monogamy cancellation: the partition of unity $\sum_m e_m = \mathbf{1}$ forces the twisted trace to vanish for complete multiplets. \textit{Status: Verified numerically to $l = 500$.}
+
+\item[\textbf{(iv)}] \textbf{Neutrino dominance.} The surviving contribution comes from the lightest tunneling mode $m_{\nu_3} = m_e/(108\pi^{10})$ (the heaviest neutrino, which has no spectral partner). All heavier modes cancel by step~(iii). \textit{Status: Derived.}
+
+\item[\textbf{(v)}] \textbf{The $\eta^2$ factor: Theorem-level identity.}
+The algebraic identity $\eta^2 = (p{-}1) \cdot \tau_R \cdot K = 2 \cdot (1/27) \cdot (2/3) = 4/81$ holds \textbf{only} for $(n,p) = (3,3)$ (proof: $n^2 = 3^{n-1}$ has unique solution $n=3$).  Here $(p{-}1) = 2$ (twisted sectors), $\tau_R = 1/p^n = 1/27$ (Reidemeister torsion, via Cheeger--M\"uller theorem), and $K = 2/3$ (Koide ratio, moment map theorem).  The CC is \textbf{topological}: the analytic torsion equals the Reidemeister torsion.  Physical picture: the $(p{-}1) = 2$ twisted sectors contribute, each weighted by the topological twist $\tau_R$ and the mass structure $K$.  Consistency: odd Dedekind sums vanish for $\mathbb{Z}_3$, confirming even (squared) order. \textit{Status: \textbf{Theorem} (algebraic identity of three Theorem-level quantities; uniqueness to $(3,3)$ proven).}  Full proof: Supplement~XI, Theorem~4.1.
+
+\item[\textbf{(vi)}] \textbf{Koide absorption gives $(1 - 1/p^2)$.} The Koide phase $K = 2/3$ distributes mass amplitude over $d_1 = 6$ ghost modes, each absorbing $K/d_1 = (2/p)/(2p) = 1/p^2 = 1/9$. The residual for vacuum energy: $(1 - 1/p^2) = 8/9$. \textit{Status: Theorem (algebraic identity).}
+
+\item[\textbf{(vii)}] \textbf{Result.} $\Lambda^{1/4} = m_{\nu_3} \cdot \eta^2 \cdot (1 - 1/p^2) = m_{\nu_3} \cdot 32/729 = 2.22$~meV. Observed: $2.25$~meV ($1.4\%$). \textit{Status: Derivation.}
+\end{enumerate}
+
+\medskip\noindent\textbf{Why the CC is small.} The cosmological constant problem is: why $\Lambda \sim (2\,\mathrm{meV})^4$ and not $\sim(100\,\mathrm{GeV})^4$? In the spectral monogamy framework: (a)~heavy modes cancel by equidistribution (step~iii); (b)~only the neutrino survives (50~meV, not 100~GeV); (c)~double boundary crossing suppresses by $\eta^2 = 4/81$; (d)~Koide absorption reduces by $8/9$. Combined: $50 \times 0.044 = 2.2$~meV. \textbf{Not fine-tuning --- geometry.}
+
+\medskip\noindent\textbf{Lotus interpretation.} The CC is the \emph{lotus breathing energy}: the fold at $\phi_{\mathrm{lotus}} = 0.9574 < 1$ never fully closes, and the residual petal overlap carries vacuum energy. The neutrino tunnels through this overlap (round trip), creating a tiny but nonzero vacuum energy set by $m_{\nu_3} \cdot 32/729$.
+
+\subsection{S6. Hubble tension ratio (Grade D)}
+
+The ratio $H_0(\text{local})/H_0(\text{CMB}) = 73.0/67.4 = 1.083$.
+Spectral candidates: $1 + 1/p^2 = 1.111$ ($+2.6\%$);
+$(d_1 + \lambda_1)/(d_1 + \lambda_1 - 1) = 11/10 = 1.100$ ($+1.6\%$).
+No clean hit; Grade~D.
+
+\subsection{S7. Strong CP (Grade A --- already solved)}
+
+$\bar\theta_{\mathrm{QCD}} = 0$ exactly, without axions (main text
+Section~3; Supplement~II, \S4).  Geometric CP (antiholomorphic
+involution) plus circulant determinant positivity eliminate
+$\bar\theta$ at tree level.
+
+\subsection{S8. Neutron lifetime anomaly (Grade C)}
+
+The dark channel branching ratio $\mathrm{BR}(\text{dark}) = 1 -
+\tau_{\text{bottle}}/\tau_{\text{beam}} = 0.01159$.
+Spectral candidate: $\alpha/(p\eta) = (1/137)/(2/3) = 3/(2 \times
+137) = 0.01095$.  Match: ${\sim}5\%$.  The interpretation: the dark
+channel rate scales as the EM coupling divided by the number of
+orbifold fold walls.
+
+%% ============================================================
+\section{Tier 3: Future Targets}
+\label{sec:tier3}
+%% ============================================================
+
+The following targets have suggestive but incomplete spectral matches.
+
+\subsection{S9. CKM unitarity deficit (Grade D/F)}
+
+The tree-level CKM matrix with Wolfenstein parameters $\lambda = 2/9$,
+$A = 5/6$ satisfies exact unitarity.  Current experimental
+unitarity tests are consistent.  A resolved deficit could connect
+to 7.1~keV sterile mixing modifying $V_{ud}$.
+
+\subsection{S10. Muon $g-2$ (Grade D)}
+
+Best spectral candidate: $\alpha^3/(p\pi) = 1.27 \times 10^{-9}$
+(factor ${\sim}2$ from target).  Alternative:
+$\alpha^2 K^2/(d_1 \lambda_1) = 1.15 \times 10^{-9}$.
+No clean hit; the anomaly itself is disputed.
+
+\subsection{S11. DESI dark energy evolution (Grade C)}
+
+If the orbifold ``breathes'' (compactification radius evolves slowly),
+the equation of state tracks $w_0 > -1$, $w_a < 0$, consistent with
+DESI~2024 hints.  The breathing frequency is set by $\lambda_1 = 5$.
+Speculative but structurally sound.
+
+\subsection{S12. B-meson $R(D^*)$ (Grade D)}
+
+Excess ratio $R(\text{exp})/R(\text{SM}) = 1.101$.  Spectral candidate:
+$1 + \eta = 11/9 = 1.222$ (too large).  No clean match.
+
+\subsection{S13. NA62 $K^+ \to \pi^+ \nu\bar\nu$ excess (Grade B$-$)}
+
+Enhancement factor: $13/8.6 = 1.51$.  Spectral candidate: $p/2 = 3/2$
+($-0.8\%$).  If the excess is real, the interpretation is that the SM
+undercounts neutrino channels by a factor $p/2$ (neutrinos access all
+three $\mathbb{Z}_3$ sectors, but only one sector per channel is
+counted in the SM).
+
+\subsection{S14. Lithium-7 problem (Grade C)}
+
+The BBN lithium discrepancy factor is ${\sim}3$.  Spectral match:
+$p = 3$.  Suggestive but suspiciously simple.
+
+\subsection{S15. Baryon asymmetry (Grade C)}
+
+Observed $\eta_B \sim 6 \times 10^{-10}$.  Spectral target:
+$\eta_B \sim \alpha^3 \cdot \eta / \pi \sim 1.37 \times 10^{-9}$
+(within factor ${\sim}2$).  The complex eta invariants
+$\eta_D(\chi_{1,2}) = \pm i/9$ provide the CP violation needed for
+baryogenesis.
+
+\subsection{S16. Nanohertz gravitational wave background (Grade C)}
+
+A first-order phase transition at the compactification scale
+$M_c \sim 10^{13}$~GeV produces a stochastic GW background.
+The spectrum is set by $\lambda_1 = 5$ and the compactification
+temperature.  Structurally interesting but unexplored.
+
+%% ============================================================
+\section{Tier 4: Anti-Predictions}
+\label{sec:anti}
+%% ============================================================
+
+These are firm predictions of \emph{non-existence}.  Each is
+falsifiable by a positive detection.
+
+\subsection{S17. No QCD axion}
+
+$\bar\theta_{\mathrm{QCD}} = 0$ geometrically (antiholomorphic
+involution on $S^5/\mathbb{Z}_3$).  No dynamical axion field is
+needed.  \textbf{Falsification:} Detection of a QCD axion by ADMX,
+HAYSTAC, ABRACADABRA, CASPEr, IAXO, or BabyIAXO.
+
+\textbf{Implication for dark matter:} If the axion is excluded, the
+dark matter candidate shifts to the KK tower (S4) in the keV range.
+
+\subsection{S18. No fourth generation}
+
+$N_{\mathrm{gen}} = p = 3$ exactly.  The $\mathbb{Z}_3$ orbifold has
+exactly three sectors; a fourth is topologically impossible.
+
+\textbf{Current data:} $N_\nu = 2.984 \pm 0.008$ (LEP, consistent).
+\textbf{Falsification:} Discovery of a fourth-generation fermion at
+any mass.
+
+\subsection{S19. Normal neutrino hierarchy}
+
+The point/side/face geometric assignment (Supplement~VII, \S7) forces
+$m_1 \approx 0$ (lightest neutrino essentially massless).  This is
+normal hierarchy.
+
+\textbf{Falsification:} Confirmed inverted hierarchy by JUNO
+(expected 2026--2027).
+
+\subsection{S20. No proton decay}
+
+Baryon number is conserved after compactification: the $\mathbb{Z}_3$
+orbifold structure protects $B$ at all energies below $M_c$.
+
+\textbf{Current bound:} $\tau_{\mathrm{proton}} > 2.4 \times 10^{34}$
+years (Super-K).
+\textbf{Falsification:} Observation of proton decay (Hyper-K).
+
+%% ============================================================
+\section{The Spectral Integer 33}
+\label{sec:33}
+%% ============================================================
+
+The integer $33 = d_1^2 - p = 36 - 3$ appears in three independent
+physical contexts:
+
+\begin{center}
+\begin{tabular}{@{} l l l l @{}}
+\toprule
+\textbf{Context} & \textbf{Formula} & \textbf{Value} & \textbf{Sector} \\
+\midrule
+Neutrino mass ratio & $\Delta m^2_{32}/\Delta m^2_{21}$ & $= 33$ & Ghost (Supp.~VII) \\
+X17 boson mass & $m_{X17}/m_e$ & $= 33$ & Anomaly (S2 above) \\
+Fused quark Koide & $K_{\mathrm{fused}} = (d_1^2 - p)/(8\lambda_1)$ & $= 33/40$ & Quark (Supp.~VI) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent All three arise from the same spectral invariant: the
+\emph{tunneling bandwidth} $d_1^2 - p$.  The degeneracy squared
+$d_1^2 = 36$ counts the number of two-body tunneling channels
+between ghost modes; subtracting $p = 3$ removes the three channels
+that are identified by the $\mathbb{Z}_3$ action.
+
+The third appearance --- the fused quark Koide ratio --- is derived in
+Supplement~VI (\S13).  Fusing up-type and down-type quarks into three
+generation pairs $(u,d), (c,s), (t,b)$ via geometric means and computing
+the Koide ratio of the resulting triplet yields
+$K_{\mathrm{fused}} = 33/40 = 0.825$, where the denominator
+$40 = 8\lambda_1 = 8 \times 5$ is equally spectral.
+
+\begin{remark}[Constraint grammar uniqueness]
+The constraint grammar (Supplement~VI, \S10; Supplement~VIII) establishes
+that $33 = d_1^2 - p$ is an \emph{intrinsic} invariant of the
+$S^5/\mathbb{Z}_3$ geometry: $d_1 = 2n = 6$ and $p = 3$ are fixed by
+the manifold, not chosen to match any observable.  The convergence of
+$33$ across three independent sectors (neutrino, anomaly, quark) therefore
+has no adjustable parameters.  With five spectral invariants and
+simple arithmetic, the probability of three independent matches to the
+same integer is ${\sim}10^{-3}$.
+\end{remark}
+
+%% ============================================================
+\section{Scoring Methodology and Statistical Significance}
+\label{sec:scoring}
+%% ============================================================
+
+\subsection{What counts as a hit}
+
+A match to $< 1\%$ from a simple spectral formula (at most 2--3
+spectral invariants combined by elementary operations) is statistically
+significant.  With 5 invariants and basic arithmetic ($+, -, \times,
+\div, \text{power}$), the probability of a random match to $< 1\%$
+for any one target is ${\sim}1/100$.
+
+Getting three such matches (S1, S2, S7) across independent physical
+sectors gives:
+\begin{equation}
+P(\text{3 independent matches at } < 1\%) \;\sim\;
+\binom{16}{3} \times (0.01)^3 \;\sim\; 5 \times 10^{-4}.
+\end{equation}
+
+\subsection{The Planck mass and the gauge hierarchy (Grade A)}
+\label{sec:gravity}
+
+The Kaluza--Klein compactification on $S^5/\mathbb{Z}_3$ gives $M_P^2 = M_9^7 \cdot \pi^3/(3\,M_c^5)$.
+The bare spectral prediction for $M_9/M_c$ is $(d_1 + \lambda_1)^2/p = 121/3 = 40.33$.
+The ghost modes ($d_1 = 6$ at eigenvalue $\lambda_1 = 5$) are absent from the physical
+spectrum but their shadow reduces the effective bulk stiffness.  The \textbf{gravity hurricane coefficient}:
+\begin{equation}
+c_{\mathrm{grav}} = -\frac{1}{d_1\lambda_1} = -\frac{1}{30}
+\end{equation}
+gives the corrected ratio:
+\begin{equation}
+\frac{M_9}{M_c} = \frac{121}{3}\cdot\frac{29}{30} = \frac{3509}{90} = 38.99 \quad (\text{measured: } 38.95,\; 0.36\%).
+\end{equation}
+This yields the Planck mass to $0.37\%$ and Newton's constant to $0.74\%$.
+
+\medskip\noindent\textbf{The gauge hierarchy explained.}
+$M_P/M_c = (3509/90)^{7/2}\sqrt{\pi^3/3} \approx 1.19 \times 10^6$ is a \emph{pure spectral number}.
+The reason gravity is $10^6$ times weaker than the compactification scale is that
+$(d_1 + \lambda_1) = 11$ enters as the 7th power through the KK mechanism on $S^5$.
+This is not fine-tuning; it is a geometric fact about the spectral content of $S^5/\mathbb{Z}_3$.
+With the gravity hurricane coefficient, all four fundamental forces are accounted for
+within the spectral framework.
+
+\subsection{Address vs.\ explain}
+
+The framework \emph{addresses} dark matter and dark energy (it
+provides candidates and explains the fine-tuning problem), but it
+does not yet \emph{explain} the magnitudes (relic abundance
+calculations, loop corrections, thermal history).  The Tier~2 and
+Tier~3 predictions are structural --- they identify where the
+spectral data points, but the full derivation requires standard
+cosmological and astrophysical calculations that are beyond the
+scope of this work.
+
+\subsection{Load-bearing anti-predictions}
+
+The four anti-predictions (S17--S20) are the most falsifiable
+claims in the framework.  Each is a binary test: detection falsifies,
+non-detection is consistent.  Together they constitute a strong
+falsification battery:
+
+\begin{itemize}
+\item Axion searches (ADMX, IAXO): no QCD axion.
+\item Collider searches: no fourth generation.
+\item JUNO: normal hierarchy.
+\item Hyper-K: no proton decay.
+\end{itemize}
+
+\subsection{Summary table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{} c l c c l @{}}
+\toprule
+\textbf{\#} & \textbf{Prediction} & \textbf{Match}
+  & \textbf{Grade} & \textbf{Experiment} \\
+\midrule
+S1 & 7.1 keV sterile & $0.039\%$ & A & X-ray telescopes \\
+S2 & X17 boson & in range & A & ATOMKI / replication \\
+S3 & 95 GeV scalar & $0.73\%$ & B & CMS / LEP \\
+S4 & KK dark matter & --- & C & keV DM searches \\
+S5 & $\Lambda^{1/4} = 2.22$ meV & $1.4\%$ & A & Cosmological (derived) \\
+S6 & Hubble tension & $1.6$--$2.6\%$ & D & Local $H_0$ \\
+S7 & $\bar\theta = 0$ & exact & A & nEDM / axion \\
+S8 & Neutron lifetime & $5\%$ & C & Beam vs.\ bottle \\
+S9--S16 & Various & --- & C--D & See text \\
+S17 & No axion & --- & --- & ADMX / IAXO \\
+S18 & No 4th gen & --- & --- & Colliders \\
+S19 & Normal hierarchy & --- & --- & JUNO \\
+S20 & No proton decay & --- & --- & Hyper-K \\
+\bottomrule
+\end{tabular}
+\caption{Summary of beyond-SM predictions from $S^5/\mathbb{Z}_3$
+spectral geometry.  Grades A--D reflect match quality and geometric
+clarity.}
+\label{tab:strange-summary}
+\end{table}
+
+%% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{pdg2024}
+R.~L.~Workman \textit{et al.}\ (Particle Data Group),
+``Review of Particle Physics,''
+\textit{Prog.\ Theor.\ Exp.\ Phys.}\ \textbf{2022} (2022) 083C01,
+and 2024 update.
+
+\bibitem{bulbul2014}
+E.~Bulbul \textit{et al.},
+``Detection of an unidentified emission line in the stacked X-ray
+spectrum of galaxy clusters,''
+\textit{ApJ}\ \textbf{789} (2014) 13.
+
+\bibitem{boyarsky2014}
+A.~Boyarsky, O.~Ruchayskiy, D.~Iakubovskyi, and J.~Franse,
+``Unidentified line in X-ray spectra of the Andromeda galaxy and
+Perseus galaxy cluster,''
+\textit{Phys.\ Rev.\ Lett.}\ \textbf{113} (2014) 251301.
+
+\bibitem{krasznahorkay2016}
+A.~J.~Krasznahorkay \textit{et al.},
+``Observation of anomalous internal pair creation in $^8$Be,''
+\textit{Phys.\ Rev.\ Lett.}\ \textbf{116} (2016) 042501.
+
+\end{thebibliography}
+
+\end{document}

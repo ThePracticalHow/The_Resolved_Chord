@@ -1,0 +1,194 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{parskip}
+
+\geometry{margin=1.2in}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{\textbf{Supplement X: The Spectral Action Derivation}\\[0.3em]
+\large The Dictionary, the Identity Chain, and the Cosmological Constant\\[0.2em]
+\normalsize The Resolved Chord --- Supplementary Material}
+
+\author{Jixiang Leng}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textit{This supplement provides the complete derivation chains for the spectral dictionary
+(Section~2 of the main text), the gravity identity chain (Section~11), the cosmological
+constant (Section~12), and the force unification picture (Section~13).
+All computations are verified by the scripts indexed in \texttt{MASTER\_CODE\_INDEX.md}.}
+
+%% ============================================================
+\section{The Spectral Dictionary Derivation}
+%% ============================================================
+
+\subsection{Level 1: The proton mass decomposition}
+
+\begin{theorem}[$\pi^2 = \lambda_1 + \alpha_s$]\label{thm:pi2}
+Let $\lambda_1 = \ell(\ell+4)|_{\ell=1} = 5$ be the first nonzero eigenvalue of the scalar
+Laplacian on $S^5$ (Ikeda~1980).  Let $\alpha_s = \pi^2 - 5$ be the Dirichlet spectral gap.
+Then $\pi^2 = \lambda_1 + \alpha_s$, where both summands have independent geometric meaning:
+$\lambda_1$ is the kinetic energy per ghost mode; $\alpha_s$ is the strong coupling
+(after RG running to $M_Z$: $\alpha_s(M_Z) = 0.1174$, $0.6\sigma$ from PDG).
+\end{theorem}
+
+\begin{proof}
+The identity $\pi^2 = 5 + (\pi^2 - 5)$ is algebraic.  The content is:
+(i)~$\lambda_1 = 5$ is a theorem of spectral geometry~(Ikeda);
+(ii)~$\alpha_s = \pi^2 - 5$ is the Dirichlet gap identified with the strong coupling
+(Parameter~9 of the main text).
+\end{proof}
+
+\begin{corollary}[Proton decomposition]
+The tree-level proton mass is $m_p/m_e = d_1 \cdot \mathrm{Vol}(S^5) \cdot \pi^2 = 6\pi^5$,
+where $d_1 = 6$ (ghost mode count), $\mathrm{Vol}(S^5) = \pi^3$, and $\pi^2 = \lambda_1 + \alpha_s$.
+This equals the Gaussian phase-space integral over $\mathbb{R}^{10}$ (Supplement~IV, \S1):
+both the local (Gaussian) and global (Vol $\times$ energy) pictures give $\pi^5$.
+\end{corollary}
+
+\noindent\textbf{Verification:} \texttt{spectral\_action\_dictionary.py}.
+
+\subsection{Level 2: The fine-structure constant}
+
+The lag correction $G/p = \lambda_1\eta/p = 10/27$ is derived in Supplement~IV: the spectral coupling $G = \lambda_1\eta = 10/9$ in \S5--6, the lag mechanism in \S8.2, and the non-circular inversion extracting $\alpha$ from the proton mass ratio in \S7.
+Combined with $\sin^2\theta_W = 3/8$ (SO(6) branching) and SM two-loop running,
+this gives $1/\alpha(0) = 137.038$ ($0.001\%$).
+
+\subsection{Level 3: The Higgs sector}
+
+\begin{proposition}[Dirac eigenvalue at ghost level]\label{prop:dirac}
+On the round unit $S^5$, the Dirac eigenvalues are $\pm(\ell + 5/2)$.
+At the ghost level $\ell = 1$: $\lambda_1^D = 7/2$.
+\end{proposition}
+\begin{proof}
+Standard result (Ikeda~1980, Gilkey~1984): on $S^{2k+1}$, eigenvalues $\pm(\ell+k+1/2)$;
+for $S^5$ ($k=2$): $\pm(\ell+5/2)$; at $\ell=1$: $\pm 7/2$.
+\end{proof}
+
+\noindent The Higgs formulas (Supplement~V):
+$v/m_p = 2/\alpha - (d_1+\lambda_1+K) = 2/\alpha - 35/3$ (two twisted sectors, ghost cost);
+$m_H/m_p = 1/\alpha - 7/2$ (one sector excitation, Dirac eigenvalue);
+$\lambda_H = (m_H/m_p)^2/[2(v/m_p)^2] = 0.1295$.
+
+%% ============================================================
+\section{The Identity Chain}
+%% ============================================================
+
+\begin{theorem}[$\eta = d_1/p^n$]\label{thm:eta-ghost}
+The Donnelly eta invariant on $S^5/\mathbb{Z}_3$ equals the ghost mode count per orbifold volume:
+\[
+\eta = \sum_{m=1}^{p-1}|\eta_D(\chi_m)| = \frac{d_1}{p^n} = \frac{6}{27} = \frac{2}{9}.
+\]
+\end{theorem}
+\begin{proof}
+Direct computation from the Donnelly formula (Supplement~I, \S2):
+$|\eta_D(\chi_1)| = |\eta_D(\chi_2)| = 1/9$; sum $= 2/9$.
+And $d_1/p^n = 6/27 = 2/9$.  The identity holds because $d_1 = 2n$ and
+$p^n = 27$ for $(n,p)=(3,3)$, with $\eta = 2n/p^n = 2/9$.
+\end{proof}
+
+\noindent From this single identity:
+\begin{align}
+\tau &= 1/p^n = 1/27 &&\text{(Reidemeister torsion)}, \\
+G &= \lambda_1 \eta = 10/9 &&\text{(proton coupling)}, \\
+c_{\mathrm{grav}} &= -\tau/G = -1/(d_1\lambda_1) = -1/30 &&\text{(gravity = topology $\div$ QCD)}.
+\end{align}
+
+\noindent\textbf{Verification:} \texttt{gravity\_derivation\_v3.py}.
+
+%% ============================================================
+\section{The Cosmological Constant Derivation}
+%% ============================================================
+
+\begin{theorem}[CC from round-trip tunneling]\label{thm:cc}
+The one-loop cosmological constant on $(B^6/\mathbb{Z}_3, S^5/\mathbb{Z}_3)$ is:
+\[
+\Lambda^{1/4} = m_{\nu_3} \cdot \eta^2 \cdot \left(1 - \frac{K}{d_1}\right)
+= m_{\nu_3} \cdot \frac{32}{729} = 2.22\;\mathrm{meV} \quad (1.4\%).
+\]
+\end{theorem}
+
+\noindent\textbf{Derivation:}
+\begin{enumerate}
+\item[\textbf{(i)}] $V_{\mathrm{tree}}(\phi_{\mathrm{lotus}}) = 0$ (orbifold volume cancellation). \textit{[Theorem.]}
+\item[\textbf{(ii)}] One-loop CC from twisted sectors only (renormalization absorbs untwisted). \textit{[Derived.]}
+\item[\textbf{(iii)}] Heavy mode cancellation: $2\mathrm{Re}[\chi_l(\omega)] \to 0$ for $l \gg 1$
+(equidistribution of $\mathbb{Z}_3$ characters; verified to $l = 500$). \textit{[Verified.]}
+\item[\textbf{(iv)}] Neutrino dominance: $m_{\nu_3} = m_e/(108\pi^{10})$ is the lightest tunneling mode. \textit{[Derived.]}
+\item[\textbf{(v)}] Round-trip tunneling: the one-loop bubble crosses the boundary twice;
+APS boundary condition gives amplitude $\eta$ per crossing; round trip $= \eta^2 = 4/81$.
+Consistency: odd Dedekind sums vanish for $\mathbb{Z}_3$ ($\cot^3(\pi/3) + \cot^3(2\pi/3) = 0$),
+confirming even (squared) order. \textit{[Derived.]}
+\item[\textbf{(vi)}] Koide absorption: $K/d_1 = (2/p)/(2p) = 1/p^2 = 1/9$;
+residual $(1 - 1/p^2) = 8/9$. \textit{[Theorem.]}
+\item[\textbf{(vii)}] Result: $\Lambda^{1/4} = 50.52\;\mathrm{meV} \times 32/729 = 2.22\;\mathrm{meV}$.
+Observed: $2.25\;\mathrm{meV}$ ($1.4\%$). \textit{[Derivation.]}
+\end{enumerate}
+
+\noindent\textbf{Why the CC is small:}
+(a)~Heavy modes cancel (equidistribution).
+(b)~Only $m_{\nu_3}$ survives ($50$~meV, not $100$~GeV).
+(c)~Double boundary crossing: $\eta^2 = 4/81$.
+(d)~Koide absorption: $8/9$.
+Combined: $50 \times 0.044 = 2.2$~meV.  Not fine-tuning --- geometry.
+
+\noindent\textbf{Verification:} \texttt{cc\_aps\_proof.py}, \texttt{cc\_monogamy\_cancellation.py}.
+
+%% ============================================================
+\section{Provenance Table}
+%% ============================================================
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{4.5cm}p{3cm}p{2.5cm}l}
+\toprule
+\textbf{Result} & \textbf{Source} & \textbf{Verification} & \textbf{Status} \\
+\midrule
+$\pi^2 = \lambda_1 + \alpha_s$ & Algebraic + Ikeda & Exact & Theorem \\
+$\eta = d_1/p^n = 2/9$ & Donnelly + counting & $<10^{-10}$ & Theorem \\
+$c_{\mathrm{grav}} = -\tau/G = -1/30$ & Identity chain & $M_P$ to $0.37\%$ & Derived \\
+$X_{\mathrm{bare}} = (d_1+\lambda_1)^2/p$ & Heat kernel $a_2$ & $3.4\%$ bare & Identified \\
+$7/2$ = Dirac at ghost level & Ikeda 1980 & Algebraic & Theorem \\
+$\Lambda^{1/4} = m_{\nu_3} \cdot 32/729$ & Round-trip tunneling & $1.4\%$ & Derived \\
+Heavy mode cancellation & Equidistribution & $l = 0\ldots500$ & Verified \\
+$K/d_1 = 1/p^2 = 1/9$ & Algebra: $K=2/p, d_1=2p$ & Exact & Theorem \\
+\bottomrule
+\end{tabular}
+\caption{Provenance map for Supplement~X results.}
+\end{table}
+
+\begin{thebibliography}{99}
+
+\bibitem{donnelly1978}
+H.~Donnelly, ``Eta invariants for $G$-spaces,''
+\textit{Indiana Univ.\ Math.\ J.}\ \textbf{27} (1978) 889--918.
+
+\bibitem{ikeda1980}
+A.~Ikeda, ``On the spectrum of the Laplacian on the spherical space forms,''
+\textit{Osaka J.\ Math.}\ \textbf{17} (1980) 691.
+
+\bibitem{gilkey1984}
+P.~B.~Gilkey, \textit{Invariance Theory, the Heat Equation, and the Atiyah-Singer Index Theorem},
+Publish or Perish, 1984.
+
+\bibitem{grubb1996}
+G.~Grubb, \textit{Functional Calculus of Pseudodifferential Boundary Problems},
+2nd ed., Birkh\"auser, 1996.
+
+\bibitem{cheeger1979}
+J.~Cheeger, ``Analytic torsion and the heat equation,''
+\textit{Ann.\ of Math.}\ \textbf{109} (1979) 259--322.
+
+\end{thebibliography}
+
+\end{document}

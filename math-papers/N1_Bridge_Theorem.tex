@@ -1,0 +1,302 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\geometry{margin=1.2in}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{\textbf{Cutoff Independence of Spectral Projections\\on Finite Group Quotients}\\[0.5em]
+\large The $N=1$ Bridge Theorem}
+
+\author{Jixiang Leng}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $D$ be a self-adjoint operator with discrete spectrum on a Hilbert space $\mathcal{H}$,
+and let $G$ be a finite group acting on $\mathcal{H}$ by isometries that commute with $D$.
+We prove that for any bounded Borel function $f$ and any minimal central idempotent $e_m$
+of the group algebra $\mathbb{C}[G]$, the trace $\mathrm{Tr}(f(D)\,e_m)$ equals
+$\mathrm{Tr}(f(D_m))$ where $D_m = D|_{e_m\mathcal{H}}$, with coefficient exactly $1$.
+In particular, the spectral correction from each group sector is independent of the
+choice of cutoff function $f$.  Applied to the Dirac operator on $S^5/\mathbb{Z}_3$,
+this eliminates all cutoff-function ambiguity in the Yukawa phase correction and
+forces $N=1$ in the spectral action framework.
+\end{abstract}
+
+%% ============================================================
+\section{Introduction}
+%% ============================================================
+
+In the spectral action approach to particle physics~\cite{connes1996,chamseddine2011},
+the bosonic action is extracted from the trace $\mathrm{Tr}(f(D/\Lambda))$ where $D$
+is the Dirac operator and $f$ is a cutoff function.  Physical predictions that depend
+on the \emph{choice} of $f$ are not genuine predictions but artifacts of the regularization.
+
+On an orbifold $M/G$, the Dirac spectrum decomposes into sectors labeled by the
+irreducible representations of $G$.  The spectral correction in each sector involves
+a coefficient $N$ multiplying the eta invariant.  If $N$ depends on $f$, the correction
+is scheme-dependent and therefore unphysical.  If $N$ is independent of $f$, the
+correction is a geometric invariant.
+
+We prove that $N = 1$ exactly, for any $f$, as a consequence of the commutativity
+$[f(D), e_m] = 0$ when $G$ acts by isometries.  The proof uses only functional calculus
+and the spectral theorem; no special properties of $f$ beyond measurability are required.
+
+%% ============================================================
+\section{Setup and Notation}
+%% ============================================================
+
+\begin{definition}[Spectral triple with finite group action]\label{def:setup}
+Let $(\mathcal{H}, D)$ be a spectral datum consisting of:
+\begin{itemize}
+\item A separable Hilbert space $\mathcal{H}$.
+\item A self-adjoint operator $D$ with compact resolvent (hence discrete spectrum
+$\{\lambda_n\}_{n \in \mathbb{N}}$ with $|\lambda_n| \to \infty$).
+\end{itemize}
+Let $G$ be a finite group acting on $\mathcal{H}$ by unitary operators
+$\rho: G \to \mathcal{U}(\mathcal{H})$ satisfying the \textbf{isometry condition}:
+\begin{equation}
+\rho(g)\, D = D\, \rho(g) \qquad \text{for all } g \in G.
+\label{eq:commutation}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Minimal central idempotents]\label{def:idempotents}
+The group algebra $\mathbb{C}[G]$ decomposes as a direct sum of matrix algebras,
+one for each irreducible representation $\pi_m$ of $G$ ($m = 0, 1, \ldots, r-1$
+where $r$ is the number of irreducible representations).  The \textbf{minimal central
+idempotents} are:
+\begin{equation}
+e_m = \frac{\dim \pi_m}{|G|} \sum_{g \in G} \overline{\chi_m(g)}\, \rho(g),
+\label{eq:idempotent}
+\end{equation}
+where $\chi_m$ is the character of $\pi_m$.  These satisfy:
+\begin{align}
+e_m^2 &= e_m, \label{eq:idem-square}\\
+e_m e_{m'} &= 0 \quad\text{for } m \neq m', \label{eq:idem-orthogonal}\\
+\sum_{m=0}^{r-1} e_m &= \mathbf{1}. \label{eq:partition-of-unity}
+\end{align}
+\end{definition}
+
+\begin{definition}[Sector Hilbert space and restricted operator]
+The $m$-th sector Hilbert space is $\mathcal{H}_m = e_m \mathcal{H}$.
+The restricted operator is $D_m = D|_{\mathcal{H}_m}$.
+\end{definition}
+
+%% ============================================================
+\section{The Main Theorem}
+%% ============================================================
+
+\begin{theorem}[$N=1$: Cutoff Independence]\label{thm:N1}
+Let $(\mathcal{H}, D, G, \rho)$ be as in Definition~\ref{def:setup}, satisfying the
+isometry condition~\eqref{eq:commutation}.  Let $f: \mathbb{R} \to \mathbb{C}$ be a Borel function such that $f(D)$ is
+trace-class\footnote{This holds for heat kernels $f(x) = e^{-tx^2}$,
+resolvents $f(x) = (x^2 + m^2)^{-s}$ with $\mathrm{Re}(s)$ sufficiently large,
+smooth cutoffs with sufficient decay, and more generally any $f$ for which
+$\sum_n |f(\lambda_n)| < \infty$.  The eta function case $f(x) = \mathrm{sign}(x)|x|^{-s}$
+is handled by analytic continuation from the region of convergence, not as a literal
+bounded function.}.
+Then for each minimal central idempotent $e_m$:
+\begin{equation}
+\boxed{\mathrm{Tr}(f(D)\, e_m) = \mathrm{Tr}(f(D_m)).}
+\label{eq:main}
+\end{equation}
+In particular, if $\eta_m = \sum_{\lambda \in \mathrm{spec}(D_m)} \mathrm{sign}(\lambda)\,|\lambda|^{-s}|_{s=0}$
+is the eta invariant of the $m$-th sector, then the coefficient of $\eta_m$ in any
+spectral action trace is exactly $1$, independent of $f$.
+\end{theorem}
+
+\begin{proof}
+The proof proceeds in three steps.
+
+\medskip\noindent\textbf{Step 1: $f(D)$ commutes with $e_m$.}
+
+Since $G$ acts by isometries, $\rho(g) D = D \rho(g)$ for all $g \in G$.
+By the functional calculus for self-adjoint operators, for any bounded Borel function $f$:
+\begin{equation}
+\rho(g)\, f(D) = f(D)\, \rho(g) \qquad \text{for all } g \in G.
+\label{eq:f-commutes-g}
+\end{equation}
+\emph{Proof of~\eqref{eq:f-commutes-g}:}
+Let $D = \int \lambda\, dE(\lambda)$ be the spectral decomposition, so
+$f(D) = \int f(\lambda)\, dE(\lambda)$.  Since $\rho(g)$ commutes with $D$,
+it commutes with every spectral projection $E(B)$ for Borel sets $B \subset \mathbb{R}$
+(standard result: see~\cite{reed-simon}, Theorem VIII.5).  Therefore $\rho(g)$ commutes
+with $\int f(\lambda)\, dE(\lambda) = f(D)$.
+
+Since $e_m$ is a $\mathbb{C}$-linear combination of the $\rho(g)$
+(equation~\eqref{eq:idempotent}), it follows that:
+\begin{equation}
+[f(D),\, e_m] = 0.
+\label{eq:f-commutes-em}
+\end{equation}
+
+\medskip\noindent\textbf{Step 2: The trace decomposes.}
+
+Since $e_m$ is a projection ($e_m^2 = e_m$) and commutes with $f(D)$,
+the operator $f(D)\, e_m = e_m\, f(D)\, e_m$ acts on $\mathcal{H}_m = e_m\mathcal{H}$.
+Let $\{|\psi_n^{(m)}\rangle\}$ be an orthonormal eigenbasis of $D_m$ in $\mathcal{H}_m$
+with eigenvalues $\{\lambda_n^{(m)}\}$.  Then:
+\begin{align}
+\mathrm{Tr}(f(D)\, e_m)
+&= \sum_n \langle \psi_n^{(m)} | f(D)\, e_m | \psi_n^{(m)} \rangle
+\label{eq:trace-expand}\\
+&= \sum_n \langle \psi_n^{(m)} | f(D) | \psi_n^{(m)} \rangle
+\qquad \text{(since $e_m |\psi_n^{(m)}\rangle = |\psi_n^{(m)}\rangle$)}
+\label{eq:em-acts}\\
+&= \sum_n f(\lambda_n^{(m)})
+\qquad \text{(since $|\psi_n^{(m)}\rangle$ is an eigenstate of $D$ with eigenvalue $\lambda_n^{(m)}$)}
+\label{eq:eigenvalue}\\
+&= \mathrm{Tr}(f(D_m)).
+\label{eq:final}
+\end{align}
+
+The key step is~\eqref{eq:eigenvalue}: $|\psi_n^{(m)}\rangle \in \mathcal{H}_m$ is an
+eigenvector of $D_m = D|_{\mathcal{H}_m}$, and since $[D, e_m] = 0$
+(which follows from~\eqref{eq:commutation} and the definition of $e_m$),
+it is also an eigenvector of $D$ with the \emph{same} eigenvalue.
+Therefore $f(D)|\psi_n^{(m)}\rangle = f(\lambda_n^{(m)})|\psi_n^{(m)}\rangle$.
+
+\medskip\noindent\textbf{Step 3: The coefficient is $1$.}
+
+Equation~\eqref{eq:final} shows $\mathrm{Tr}(f(D)\, e_m) = \mathrm{Tr}(f(D_m))$
+with coefficient exactly $1$.  This holds for \emph{any} bounded Borel $f$,
+including:
+\begin{itemize}
+\item $f(x) = e^{-tx^2}$ (heat kernel; trace-class for $t > 0$),
+\item $f(x) = (x^2 + m^2)^{-s}$ (resolvent; trace-class for $\mathrm{Re}(s) > \dim(M)/2$),
+\item Any Schwartz-class function (smooth cutoff; trace-class by rapid decay),
+\item The eta function $\eta_m(s) = \mathrm{Tr}(\mathrm{sign}(D_m)|D_m|^{-s})$
+via analytic continuation from $\mathrm{Re}(s) \gg 0$.
+\end{itemize}
+In particular, if we define the spectral correction as
+$\Delta_m = N \cdot \eta_m$ where $\eta_m$ is the eta invariant of the $m$-th sector,
+then $N = 1$ independently of the regularization scheme.  \qed
+\end{proof}
+
+%% ============================================================
+\section{Application to $S^5/\mathbb{Z}_3$}
+%% ============================================================
+
+\begin{corollary}[Yukawa phase on $S^5/\mathbb{Z}_3$]\label{cor:yukawa}
+Let $D$ be the Dirac operator on $S^5$ equipped with the round metric of radius $R$.
+Let $\mathbb{Z}_3$ act by $z_j \mapsto \omega z_j$ ($\omega = e^{2\pi i/3}$,
+$j = 1,2,3$) on $S^5 \subset \mathbb{C}^3$.  This action commutes with $D$
+(since it acts by isometries of the round metric).
+
+The group $\mathbb{Z}_3$ has three irreducible representations:
+$\chi_0$ (trivial), $\chi_1$ (character $\omega$), $\chi_2$ (character $\omega^2$).
+The corresponding minimal idempotents are
+$e_m = \frac{1}{3}\sum_{k=0}^{2} \omega^{-mk} \rho(\omega^k)$.
+
+By Theorem~\ref{thm:N1}, for any cutoff function $f$:
+\begin{equation}
+\mathrm{Tr}(f(D)\, e_m) = \mathrm{Tr}(f(D_m)) = \sum_{\lambda \in \mathrm{spec}(D_m)} f(\lambda).
+\end{equation}
+
+The Donnelly eta invariant of the $m$-th sector is
+$\eta_D(\chi_m) = \pm i/9$ (computed in~\cite{donnelly1978}).
+By the theorem, the coefficient of $\eta_D(\chi_m)$ in the Yukawa phase correction
+is exactly $1$, regardless of the cutoff function used in the spectral action.
+\end{corollary}
+
+\begin{proof}
+The $\mathbb{Z}_3$ action on $S^5$ is by isometries (rotation by $2\pi/3$ in each
+complex coordinate plane preserves the round metric).  Therefore
+$\rho(g) D = D \rho(g)$ for all $g \in \mathbb{Z}_3$.
+Theorem~\ref{thm:N1} applies with $G = \mathbb{Z}_3$.  \qed
+\end{proof}
+
+\begin{remark}[Significance for the spectral action]
+In the Connes--Chamseddine spectral action~\cite{connes1996,chamseddine2011},
+the bosonic action is $\mathrm{Tr}(f(D/\Lambda))$ and physical predictions arise
+from the Seeley--DeWitt expansion.  The choice of cutoff function $f$ affects
+individual Seeley--DeWitt coefficients through the ``moments'' $f_k = \int_0^\infty f(u)\, u^{k/2-1}\, du$.
+The $N=1$ theorem guarantees that the sector decomposition --- how the spectral
+content distributes among $\mathbb{Z}_3$ representations --- is \emph{independent}
+of these moments.  The eta invariant contributes $\eta_D(\chi_m)$ to the $m$-th sector
+with coefficient exactly $1$, regardless of whether $f$ is a sharp cutoff, a smooth
+cutoff, or any other admissible function.
+
+This eliminates a potential source of scheme dependence that would otherwise
+undermine the derivation of the Koide phase $\delta = 2\pi/3 + 2/9$ from the spectral
+geometry of $S^5/\mathbb{Z}_3$.
+\end{remark}
+
+%% ============================================================
+\section{Generalization}
+%% ============================================================
+
+\begin{remark}[Generality of the result]
+Theorem~\ref{thm:N1} holds for:
+\begin{enumerate}
+\item Any finite group $G$ (not just cyclic groups).
+\item Any self-adjoint operator with compact resolvent (not just the Dirac operator).
+\item Any bounded Borel function $f$ (not just smooth or Schwartz-class cutoffs).
+\item Any Riemannian manifold $M$ on which $G$ acts by isometries.
+\end{enumerate}
+The only requirement is the isometry condition~\eqref{eq:commutation}: the group action
+must commute with the operator.  For the Dirac operator on a Riemannian manifold,
+this is equivalent to requiring that $G$ act by isometries --- a geometric condition,
+not an analytic one.
+\end{remark}
+
+\begin{remark}[What fails without the isometry condition]
+If $G$ does \emph{not} act by isometries (e.g., if the group action deforms the metric),
+then $[D, \rho(g)] \neq 0$ and the functional calculus argument in Step~1 fails.
+In that case, $[f(D), e_m] \neq 0$ for generic $f$, and the coefficient $N$ depends
+on the choice of cutoff function.  The $N=1$ result is therefore a genuine theorem
+about isometric group actions, not a tautology.
+\end{remark}
+
+%% ============================================================
+\section{Summary}
+%% ============================================================
+
+The $N=1$ bridge theorem states that on any orbifold $M/G$ where $G$ acts by isometries,
+the decomposition of the spectral action into group-representation sectors is independent
+of the cutoff function.  The proof is three lines of functional calculus:
+(1)~isometry implies $[\rho(g), D] = 0$;
+(2)~functional calculus gives $[\rho(g), f(D)] = 0$ for any Borel $f$;
+(3)~$e_m$ is a linear combination of $\rho(g)$, so $[f(D), e_m] = 0$,
+and the trace $\mathrm{Tr}(f(D)\, e_m) = \mathrm{Tr}(f(D_m))$ with coefficient $1$.
+
+Applied to $S^5/\mathbb{Z}_3$: the Yukawa phase correction from the Donnelly eta invariant
+is exactly $\eta_D(\chi_m)$ per sector, with no cutoff ambiguity.  This is the mathematical
+foundation for the scheme-independent derivation of the Koide mass ratios from spectral geometry.
+
+%% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{connes1996}
+A.~Connes, ``Gravity coupled with matter and the foundation of non-commutative geometry,''
+\textit{Commun.\ Math.\ Phys.}\ \textbf{182} (1996) 155.
+
+\bibitem{chamseddine2011}
+A.~H.~Chamseddine and A.~Connes, ``The uncanny precision of the spectral action,''
+\textit{Commun.\ Math.\ Phys.}\ \textbf{307} (2011) 735.
+
+\bibitem{donnelly1978}
+H.~Donnelly, ``Eta invariants for $G$-spaces,''
+\textit{Indiana Univ.\ Math.\ J.}\ \textbf{27} (1978) 889--918.
+
+\bibitem{reed-simon}
+M.~Reed and B.~Simon, \textit{Methods of Modern Mathematical Physics},
+Vol.~I: Functional Analysis, Academic Press, 1980.
+
+\end{thebibliography}
+
+\end{document}

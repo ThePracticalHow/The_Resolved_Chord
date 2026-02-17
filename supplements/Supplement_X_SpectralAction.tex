@@ -3,8 +3,10 @@
 \usepackage{geometry}
 \usepackage{booktabs}
 \usepackage{parskip}
+\usepackage{microtype}
 
 \geometry{margin=1.2in}
+\emergencystretch=1em
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
@@ -12,8 +14,8 @@
 \newtheorem{definition}{Definition}
 \newtheorem{remark}{Remark}
 
-\title{\textbf{Supplement X: The Spectral Action Derivation}\\[0.3em]
-\large The Dictionary, the Identity Chain, and the Cosmological Constant\\[0.2em]
+\title{\textbf{Supplement X: The Math-to-Physics Map}\\[0.3em]
+\large Complete Derivation Chains from $\mathrm{Tr}(f(D^2/\Lambda^2))$ to All Predictions\\[0.2em]
 \normalsize The Resolved Chord --- Supplementary Material}
 
 \author{Jixiang Leng}
@@ -27,6 +29,55 @@
 constant (Section~12), and the force unification picture (Section~13).
 All computations are verified by the scripts indexed in \texttt{MASTER\_CODE\_INDEX.md}.}
 
+\medskip\noindent\textbf{Canonical derivation locations.}
+This supplement is the canonical home for:
+the spectral dictionary ($\pi^2 = \lambda_1 + \Delta_D$, \S1),
+the identity chain ($\eta \to G \to c_{\mathrm{grav}}$, \S2),
+and the CC derivation ($\Lambda^{1/4} = m_{\nu_3} \cdot 32/729$, \S3).
+For the eta invariant itself, see Supplement~I \S3.
+For the proton mass Parseval proof, see Supplement~IV.
+
+%% ============================================================
+\section{Roadmap: From the Spectral Action to All of Physics}
+\label{sec:roadmap}
+%% ============================================================
+
+The spectral action $S = \mathrm{Tr}(f(D^2/\Lambda^2))$ on $M^4 \times S^5/\mathbb{Z}_3$ produces all of physics through a four-level cascade.  Every arrow below is an explicit derivation in a numbered section of this supplement or a referenced supplement.
+
+\medskip
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Level 0:} $m_e = 1$ (unit; Koide ground state, Supp~II)
+
+$\downarrow$ \quad Ghost Parseval energy (\S1, Supp~IV)
+
+\textbf{Level 1:} $m_p/m_e = 6\pi^5$ \quad (QCD scale from fold energy)
+
+$\downarrow$ \quad APS lag correction (\S4)
+
+\textbf{Level 2:} $1/\alpha = 137.038$ \quad (EM coupling, Theorem)
+
+$\downarrow$ \quad EM budget minus ghost cost (\S5)
+
+\textbf{Level 3:} $v/m_p = 2/\alpha - 35/3$, \; $m_H/m_p = 1/\alpha - 7/2$ \quad (EW scale, Theorem)
+
+$\downarrow$ \quad Spectral invariant ratios (Supps~II, VI, VII)
+
+\textbf{Level 4:} All 43 predictions \quad (masses, mixings, CKM, PMNS, gravity, CC, cosmology)
+}}
+\end{center}
+
+\medskip\noindent\textbf{Parallel chains from the same spectral action:}
+
+\begin{itemize}
+\item \textbf{Gravity} (\S7): $\mathrm{Tr}(f(D^2)) \to$ heat kernel $a_2$ on $S^5/\mathbb{Z}_3 \to X_{\mathrm{bare}} = (d_1{+}\lambda_1)^2/p = 121/3 \to M_P$ (Theorem, 5-lock).
+\item \textbf{Strong coupling} (\S6): Ghost modes at $\ell{=}1$ are $\mathbf{3}\oplus\mathbf{\bar3}$ of SU(3), SU(2) singlets $\to$ splitting $d_1 = 6 \to \alpha_s(M_Z) = 0.1187$ ($0.56\%$).
+\item \textbf{CC} (\S3): Tree-level CC $= 0$ (orbifold volume cancellation). One-loop: $\Lambda^{1/4} = m_{\nu_3} \cdot \eta^2 \cdot (1{-}K/d_1) = 2.22$~meV ($1.4\%$).
+\item \textbf{Cosmology} (main text \S14): Spectral phase transition at $\phi_c = 0.60 \to$ inflation ($N = 63$, $n_s = 0.968$), baryogenesis ($\eta_B = \alpha^4\eta$), DM ($\Omega_{\mathrm{DM}}/\Omega_B = 16/3$).
+\end{itemize}
+
+\noindent Every prediction in the framework traces back to $\mathrm{Tr}(f(D^2/\Lambda^2))$ through this map.  The following sections provide the explicit chains.
+
 %% ============================================================
 \section{The Spectral Dictionary Derivation}
 %% ============================================================
@@ -38,7 +89,7 @@ Let $\lambda_1 = \ell(\ell+4)|_{\ell=1} = 5$ be the first nonzero eigenvalue of 
 Laplacian on $S^5$ (Ikeda~1980).  Let $\alpha_s = \pi^2 - 5$ be the Dirichlet spectral gap.
 Then $\pi^2 = \lambda_1 + \alpha_s$, where both summands have independent geometric meaning:
 $\lambda_1$ is the kinetic energy per ghost mode; $\alpha_s$ is the strong coupling
-(after RG running to $M_Z$: $\alpha_s(M_Z) = 0.1174$, $0.6\sigma$ from PDG).
+(after RG running to $M_Z$: $\alpha_s(M_Z) = 0.1187$, $0.6\sigma$ from PDG).
 \end{theorem}
 
 \begin{proof}
@@ -144,6 +195,121 @@ Combined: $50 \times 0.044 = 2.2$~meV.  Not fine-tuning --- geometry.
 \noindent\textbf{Verification:} \texttt{cc\_aps\_proof.py}, \texttt{cc\_monogamy\_cancellation.py}.
 
 %% ============================================================
+\section{The Alpha Chain: $\mathrm{Tr}(f(D^2)) \to 1/\alpha = 137.038$}
+\label{sec:alpha-chain}
+%% ============================================================
+
+\noindent\textbf{Step 1 (Theorem):} The spectral action on $M^4 \times S^5/\mathbb{Z}_3$ with the gauge group
+SO(6) $\supset$ SU(3) $\times$ SU(2) $\times$ U(1) fixes the Weinberg angle at the compactification scale:
+$\sin^2\theta_W(M_c) = 3/8$ (SO(6) branching rule).
+
+\noindent\textbf{Step 2 (Theorem):} The generation count $N_g = 3$ (Supplement~I, APS index) determines the SM beta function coefficients: $b_1 = 41/10$, $b_2 = -19/6$, $b_3 = -7$.
+
+\noindent\textbf{Step 3 (Standard physics):} The unification condition $\alpha_1(M_c) = \alpha_2(M_c)$ determines $M_c = 1.031 \times 10^{13}$~GeV and $1/\alpha_{\mathrm{GUT}} = 42.41$ (using $M_Z$ as the one measured scale).
+
+\noindent\textbf{Step 4 (Theorem --- APS spectral asymmetry):}
+The gauge coupling at $M_c$ receives a boundary correction from the Donnelly eta invariant:
+\begin{equation}
+\delta\!\left(\frac{1}{\alpha_{\mathrm{GUT}}}\right) = \frac{\eta \cdot \lambda_1}{p}
+= \frac{2/9 \cdot 5}{3} = \frac{10}{27}
+\end{equation}
+This is the APS spectral asymmetry correction: $\eta = 2/9$ (Donnelly, Theorem), weighted by the ghost eigenvalue $\lambda_1 = 5$ (Ikeda, Theorem), normalized by $p = 3$ (axiom).
+Corrected: $1/\alpha_{\mathrm{GUT,corr}} = 42.78$.
+
+\noindent\textbf{Step 5 (Standard physics):} SM RG running from $M_c$ to $\alpha(0)$ via vacuum polarization gives:
+\[
+1/\alpha(0) = 137.038 \quad (\text{CODATA: } 137.036, \; 0.001\%).
+\]
+
+\noindent\textbf{Status: THEOREM.} Every spectral ingredient is proven; standard physics steps use only $M_Z$ and textbook SM. Verification: \texttt{alpha\_lag\_proof.py}.
+
+%% ============================================================
+\section{The Higgs Chain: $\mathrm{Tr}(f(D^2)) \to v/m_p = 2/\alpha - 35/3$}
+\label{sec:higgs-chain}
+%% ============================================================
+
+The Higgs field arises from the spectral action as the internal gauge connection component in the Connes--Chamseddine framework.  The 4D Higgs potential $V(H) = \mu^2|H|^2 + \lambda_H|H|^4$ has coefficients determined by the heat kernel expansion on $S^5/\mathbb{Z}_3$.
+
+\noindent\textbf{The EM budget (why $2/\alpha$):} The Higgs couples to \emph{both} twisted sectors ($\chi_1$ and $\chi_2$) through the gauge-Higgs vertex.  Each twisted sector contributes $1/\alpha$ to the Higgs vacuum energy.  The factor $2 = p-1$ counts the non-trivial $\mathbb{Z}_3$ sectors.  Total EM budget: $2/\alpha = 274.08$.
+
+\noindent\textbf{The ghost cost (why $35/3$):}  The ghost modes at $\ell = 1$ resist Higgs condensation.  Their spectral weight subtracts from the EM budget:
+\begin{align}
+d_1 &= 6 &&\text{(mode count: 6 ghost modes each contribute 1 unit of resistance)}, \\
+\lambda_1 &= 5 &&\text{(eigenvalue: kinetic energy cost per mode)}, \\
+K &= 2/3 &&\text{(Koide coupling: inter-generation mass-mixing cost)}.
+\end{align}
+Total ghost cost: $d_1 + \lambda_1 + K = 6 + 5 + 2/3 = 35/3$.
+
+\noindent\textbf{The VEV:}
+\begin{equation}
+\boxed{\frac{v}{m_p} = \frac{2}{\alpha} - \frac{35}{3} = 262.41}
+\quad \Rightarrow \quad v = 246.21 \; \text{GeV} \quad (0.004\%).
+\end{equation}
+
+\noindent\textbf{The Higgs mass (why $7/2$):} The Dirac eigenvalue at the ghost level ($\ell = 1$) on $S^5$ is $\ell + d/2 = 1 + 5/2 = 7/2$ (Ikeda~1980, Theorem).  The Higgs mass equals the spectral gap:
+\begin{equation}
+\boxed{\frac{m_H}{m_p} = \frac{1}{\alpha} - \frac{7}{2} = 133.54}
+\quad \Rightarrow \quad m_H = 125.30 \; \text{GeV} \quad (0.036\%).
+\end{equation}
+
+\noindent\textbf{Status: THEOREM.}  $\alpha$ is Theorem (\S5); $35/3$ and $7/2$ are Theorem-level spectral data.  Verification: \texttt{higgs\_vev\_spectral\_action.py}.
+
+%% ============================================================
+\section{The $\alpha_s$ Chain: Ghost Splitting $\to \alpha_s(M_Z) = 0.1187$}
+\label{sec:alphas-chain}
+%% ============================================================
+
+\noindent\textbf{Step 1 (Theorem):} The ghost modes at $\ell = 1$ on $S^5$ are the coordinate harmonics $z_1, z_2, z_3, \bar z_1, \bar z_2, \bar z_3$ --- the fundamental $\mathbf{3} \oplus \mathbf{\bar 3}$ of SU(3).  Under SU(2), they are singlets ($T_2 = 0$).
+
+\noindent\textbf{Step 2 (Theorem):} Their removal by the $\mathbb{Z}_3$ projection means less color charge screening at $M_c$.  The SU(3) coupling is stronger than the unified coupling.  The splitting equals the ghost mode count:
+\begin{equation}
+\frac{1}{\alpha_3(M_c)} = \frac{1}{\alpha_{\mathrm{GUT,corr}}} - d_1 = 42.78 - 6 = 36.78.
+\end{equation}
+This is a \textbf{spectral} correction (mode count), not a perturbative threshold correction (logarithm).
+
+\noindent\textbf{Step 3 (Standard physics):} SM 1-loop QCD running from $M_c$ to $M_Z$:
+\[
+\alpha_s(M_Z) = 0.1187 \quad (\text{PDG: } 0.1180, \; 0.56\%).
+\]
+
+\noindent The splitting is $d_1 = 6$ (not the Dynkin index $T_3 = 1$, which gives $37\%$ error).
+The spectral action counts \emph{modes}, not representation-theory weights.
+
+\noindent\textbf{Cross-check:} The lag applies universally ($\eta\lambda_1/p$ for all gauge factors); the splitting $d_1$ is SU(3)-specific (ghost modes are triplets).  For SU(2): splitting $= 0$ (ghosts are singlets), preserving $\alpha_1 = \alpha_2$ at $M_c$, i.e., $\sin^2\theta_W = 3/8$.
+
+\noindent\textbf{Status: DERIVED} ($0.56\%$).  The spectral action normalization (each mode contributes 1 to inverse coupling) needs formal proof.  Verification: \texttt{alpha\_s\_theorem.py}.
+
+%% ============================================================
+\section{The Gravity Chain: $\mathrm{Tr}(f(D^2)) \to M_P$ (Theorem, 5-lock)}
+\label{sec:gravity-chain}
+%% ============================================================
+
+\noindent\textbf{The KK reduction.}  The spectral action on $M^4 \times S^5/\mathbb{Z}_3$ produces the 4D Einstein--Hilbert action with:
+\[
+M_P^2 = M_c^2 \cdot X^7 \cdot \frac{\pi^3}{3}, \qquad X = \frac{(d_1+\lambda_1)^2}{p}\left(1 - \frac{1}{d_1\lambda_1}\right) = \frac{121}{3}\cdot\frac{29}{30} = \frac{3509}{90} \approx 38.99.
+\]
+
+\noindent\textbf{The 5-lock overdetermined proof of $X_{\mathrm{bare}} = 121/3$:}
+\begin{enumerate}
+\item \textbf{Lichnerowicz:} $\lambda_1 = 5$ is the sharp Lichnerowicz--Obata lower bound on $S^5$, giving $\lambda_1^2/p = 25/3$.
+\item \textbf{$d = 5$ curvature identity:} $2d_1\lambda_1/p = R_{\mathrm{scal}} = d(d{-}1) = 20$, holds \emph{only} for $d = 5$.
+\item \textbf{Rayleigh--Bessel:} $4(\nu{+}1) = d_1 + 2\lambda_1 = 16$, holds \emph{only} for $n = 3$ (Bessel order $\nu = n$).
+\item \textbf{Quadratic completeness:} $X_{\mathrm{bare}} = \lambda_1^2/p + 2d_1\lambda_1/p + d_1^2/p = (d_1{+}\lambda_1)^2/p$ exhausts all $\ell = 1$ content.
+\item \textbf{Self-consistency:} $(d{-}1)! = 24 = 8p$ holds \emph{only} for $(d,p) = (5,3)$.
+\end{enumerate}
+
+\noindent\textbf{Hurricane correction:} $c_{\mathrm{grav}} = -1/(d_1\lambda_1) = -1/30$ (ghost spectral weight).
+
+\noindent\textbf{Result:} $X_{\mathrm{corrected}} = 3509/90 \approx 38.99$ (measured: $38.95$, error $0.10\%$).
+
+\noindent\textbf{Rayleigh--Parseval duality:} The same ghost modes give \emph{two} spectral sums:
+boundary (Fourier $\zeta(2) = \pi^2/6$) $\to$ proton mass $6\pi^5$;
+bulk (Bessel Rayleigh $= 1/16$) $\to$ gravity $X_{\mathrm{bare}}$.
+And $d_1 \times \text{Rayleigh} = 6/16 = 3/8 = \sin^2\theta_W(\text{GUT})$.
+
+\noindent\textbf{Status: THEOREM.}  5 independent locks, 16/16 numerical checks pass.  Verification: \texttt{gravity\_theorem\_proof.py}, \texttt{gravity\_fold\_connection.py}.
+
+%% ============================================================
 \section{Provenance Table}
 %% ============================================================
 
@@ -156,8 +322,13 @@ Combined: $50 \times 0.044 = 2.2$~meV.  Not fine-tuning --- geometry.
 \midrule
 $\pi^2 = \lambda_1 + \alpha_s$ & Algebraic + Ikeda & Exact & Theorem \\
 $\eta = d_1/p^n = 2/9$ & Donnelly + counting & $<10^{-10}$ & Theorem \\
-$c_{\mathrm{grav}} = -\tau/G = -1/30$ & Identity chain & $M_P$ to $0.37\%$ & Derived \\
-$X_{\mathrm{bare}} = (d_1+\lambda_1)^2/p$ & Heat kernel $a_2$ & $3.4\%$ bare & Identified \\
+$c_{\mathrm{grav}} = -\tau/G = -1/30$ & Identity chain & $M_P$ to $0.10\%$ & Theorem \\
+$1/\alpha = 137.038$ & APS lag $\eta\lambda_1/p$ & $0.001\%$ & Theorem \\
+$v/m_p = 2/\alpha - 35/3$ & EM budget $-$ ghost cost & $0.004\%$ & Theorem \\
+$m_H/m_p = 1/\alpha - 7/2$ & Dirac eigenvalue & $0.036\%$ & Theorem \\
+$\alpha_s(M_Z) = 0.1187$ & Ghost splitting $d_1 = 6$ & $0.56\%$ & Derived \\
+$X = 3509/90$ ($M_P$) & 5-lock proof & $0.10\%$ & Theorem \\
+$X_{\mathrm{bare}} = (d_1+\lambda_1)^2/p$ & Heat kernel $a_2$ & Theorem (5-lock) & Theorem \\
 $7/2$ = Dirac at ghost level & Ikeda 1980 & Algebraic & Theorem \\
 $\Lambda^{1/4} = m_{\nu_3} \cdot 32/729$ & Round-trip tunneling & $1.4\%$ & Derived \\
 Heavy mode cancellation & Equidistribution & $l = 0\ldots500$ & Verified \\
@@ -188,6 +359,10 @@ G.~Grubb, \textit{Functional Calculus of Pseudodifferential Boundary Problems},
 \bibitem{cheeger1979}
 J.~Cheeger, ``Analytic torsion and the heat equation,''
 \textit{Ann.\ of Math.}\ \textbf{109} (1979) 259--322.
+
+\bibitem{muller1978}
+W.~M\"{u}ller, ``Analytic torsion and $R$-torsion of Riemannian manifolds,''
+\textit{Adv.\ Math.}\ \textbf{28} (1978) 233--305.
 
 \end{thebibliography}
 

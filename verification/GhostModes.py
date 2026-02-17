@@ -479,5 +479,13 @@ ax_F.text(0.05, 0.97, text_F, transform=ax_F.transAxes,
                     edgecolor=ALIVE_COL, linewidth=2))
 
 plt.savefig('GhostModes.png', dpi=150, bbox_inches='tight')
-plt.show()
+
+# Only show plot interactively if we have a display (not in automated testing)
+import os
+if os.environ.get('DISPLAY') or os.name == 'nt':  # Windows or X11 display available
+    try:
+        plt.show()
+    except:
+        pass  # Silently skip if display fails
+
 print("\nSaved: GhostModes.png")

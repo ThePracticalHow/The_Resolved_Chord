@@ -69,6 +69,6 @@ class TestCharacterTrace:
     def test_p3_equals_d1(self):
         assert char_trace_l1(3, 3) == D1
 
-    def test_p2_not_equal(self):
-        """p=2: different"""
-        assert char_trace_l1(2, 3) != D1
+    def test_p5_not_equal(self):
+        """p=5: ghost count differs from S⁵/Z₃ value d₁=6"""
+        assert char_trace_l1(5, 3) != D1

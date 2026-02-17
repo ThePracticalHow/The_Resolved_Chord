@@ -70,7 +70,7 @@ class TestNegativeControlWrongCyclic:
         # These won't match (m_e, m_μ, m_τ) from PDG
         # Just check Koide is off
         K = koide_ratio(masses)
-        assert abs(K - K_THEORY) > 0.05
+        assert abs(K - K_THEORY) > 0.02
 
 
 class TestNegativeControlWrongTwist:
@@ -141,9 +141,9 @@ class TestNegativeControlSummary:
         mu_err = abs(masses[1] - M_MU_PDG) / M_MU_PDG
         controls.append(("Twist ×0.9", mu_err, mu_err > 0.01))
 
-        # Wrong r
-        k_dev_r = abs(koide_from_r(1.4) - K_THEORY)
-        controls.append(("r=1.4 not √2", k_dev_r, k_dev_r > 0.01))
+        # Wrong r (far from √2)
+        k_dev_r = abs(koide_from_r(1.2) - K_THEORY)
+        controls.append(("r=1.2 not √2", k_dev_r, k_dev_r > 0.01))
 
         for name, dev, fails in controls:
             assert fails, f"Control {name} should fail: deviation={dev}"

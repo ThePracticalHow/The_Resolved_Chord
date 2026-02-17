@@ -1,3 +1,7 @@
 numpy
 scipy
 mpmath
+matplotlib
+pymupdf
+tqdm
+pytest

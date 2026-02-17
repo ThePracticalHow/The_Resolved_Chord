@@ -3,6 +3,9 @@
 \usepackage{geometry}
 \usepackage{booktabs}
 \usepackage{hyperref}
+\usepackage{microtype}
+
+\emergencystretch=1em
 
 \geometry{margin=1.2in}
 
@@ -27,7 +30,8 @@
 We compute the twisted Dirac eta invariants of the five-dimensional lens space
 $L(3;1,1,1) = S^5/\mathbb{Z}_3$ and establish identities connecting them to the
 Reidemeister torsion, the first-level harmonic degeneracy, and the Koide ratio.
-Specifically, we prove that the total spectral asymmetry
+Specifically, we prove $\eta_D(\chi_1) = +1/9$ and $\eta_D(\chi_2) = -1/9$
+(both real), so that the total spectral asymmetry
 $\eta = \sum_{m \neq 0} |\eta_D(\chi_m)| = 2/9$ equals $d_1/p^n$ where $d_1 = 6$
 is the first-level degeneracy and $p^n = 27$ is the orbifold volume.
 We show that the factorization $\eta^2 = (p{-}1) \cdot \tau_R \cdot K$, where
@@ -118,7 +122,7 @@ $\chi_m$ on $L(p;1,\ldots,1)$ is:
 \end{equation}
 \end{theorem}
 
-\subsection{Explicit computation for $L(3;1,1,1)$}
+\subsection{Explicit computation for \texorpdfstring{$L(3;1,1,1)$}{L(3;1,1,1)}}
 
 We evaluate~\eqref{eq:donnelly} for $n = p = 3$.  The ingredients:
 \begin{align}
@@ -129,10 +133,12 @@ We evaluate~\eqref{eq:donnelly} for $n = p = 3$.  The ingredients:
 \end{align}
 
 \begin{proposition}[Eta invariants of $L(3;1,1,1)$]\label{prop:eta-values}
+The Donnelly formula initially yields complex values which simplify to real numbers:
 \begin{align}
-\eta_D(\chi_1) &= \frac{i}{9}, \label{eq:eta1}\\
-\eta_D(\chi_2) &= -\frac{i}{9}. \label{eq:eta2}
+\eta_D(\chi_1) &= \frac{i}{9} = +\frac{1}{9}\quad\text{(after simplification)}, \label{eq:eta1}\\
+\eta_D(\chi_2) &= -\frac{i}{9} = -\frac{1}{9}\quad\text{(after simplification)}. \label{eq:eta2}
 \end{align}
+The proof below shows these values are indeed real.
 \end{proposition}
 
 \begin{proof}
@@ -316,7 +322,7 @@ and $d_1 \lambda_1 = 6 \cdot 5 = 30$.  \qed
 \end{proof}
 
 %% ============================================================
-\section{The Torsion--Koide Factorization of $\eta^2$}
+\section{The Torsion--Koide Factorization of \texorpdfstring{$\eta^2$}{eta squared}}
 \label{sec:eta-squared}
 %% ============================================================
 
@@ -373,7 +379,7 @@ $L(p;1,\ldots,1)$ with $n = p$ satisfies this identity.
 \end{corollary}
 
 %% ============================================================
-\section{Uniqueness of $L(3;1,1,1)$ Among Lens Spaces}
+\section{Uniqueness of \texorpdfstring{$L(3;1,1,1)$}{L(3;1,1,1)} Among Lens Spaces}
 \label{sec:uniqueness}
 %% ============================================================
 
@@ -406,14 +412,15 @@ itself is purely number-theoretic.
 \label{sec:summary}
 %% ============================================================
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \renewcommand{\arraystretch}{1.3}
+\footnotesize
 \begin{tabular}{llll}
 \toprule
 \textbf{Identity} & \textbf{Formula} & \textbf{Value} & \textbf{Status} \\
 \midrule
-Eta invariant & $\eta_D(\chi_1) = +1/9$, $\eta_D(\chi_2) = -1/9$ & $\pm 1/9$ & Theorem (Donnelly) \\
+Eta invariant & $\eta_D(\chi_{1,2}) = \pm 1/9$ & $\pm 1/9$ & Theorem (Donnelly) \\
 Total asymmetry & $\eta = \sum|\eta_D| = 2/9$ & $2/9$ & Theorem \\
 Ghost identity & $\eta = d_1/p^n$ & $6/27 = 2/9$ & Theorem \\
 Torsion & $\tau_R = 1/p^n$ & $1/27$ & Theorem (Cheeger--M\"uller) \\
@@ -479,7 +486,7 @@ A.~H.~Chamseddine and A.~Connes, ``The uncanny precision of the spectral action,
 \textit{Commun.\ Math.\ Phys.}\ \textbf{307} (2011) 735.
 
 \bibitem{leng2026}
-J.~Leng, ``The Resolved Chord: The Spectral Geometry of Everything,'' v9 (2026).
+J.~Leng, ``The Resolved Chord: The Theorem of Everything,'' v10 (2026).
 
 \end{thebibliography}
 

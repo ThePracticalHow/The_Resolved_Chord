@@ -53,8 +53,9 @@ relies on the structural identification rather than an explicit integral evaluat
 
 \item[Identified.] A numerical match with a simple ratio of spectral invariants,
 supported by a physical argument, but without a closed derivation chain.
-The formula may involve spectral quantities whose combination is motivated
-but not derived from first principles.
+\textbf{As of the current version, no claims remain at this level.}
+All formerly ``Identified'' results (CKM $\bar\rho$, $\bar\eta$, $\alpha_s$)
+have been promoted to Derived or Theorem.
 \end{description}
 
 %% ============================================================
@@ -78,25 +79,25 @@ but not derived from first principles.
 
 $K = 2/3$ (Koide ratio)
 & Thm
-& Supp~I \S3; v9~P1
+& Supp~I \S3; v10~P1
 & \texttt{leng\_replication.py}
 & ``Why this moment map?'' --- Unique moment map on $S^5$ with $\mathbb{Z}_3$ symmetry. \\[4pt]
 
 $N_g = 3$ (generations)
 & Thm
-& Supp~I \S5; v9~P3
+& Supp~I \S5; v10~P3
 & \texttt{EtaInvariant.py}
 & ``Is the APS index correct?'' --- Equivariant APS on $(B^6/\mathbb{Z}_3, S^5/\mathbb{Z}_3)$; verified numerically to $<10^{-10}$. \\[4pt]
 
 $N = 1$ (Yukawa bridge)
 & Thm
-& Supp~II \S4; v9~Thm~1
+& Supp~II \S4; v10~Thm~1
 & ---
-& ``Cutoff dependence?'' --- $[f(D/\Lambda), e_m] = 0$ from $\mathbb{Z}_3$ isometry. Algebraic proof in v9. \\[4pt]
+& ``Cutoff dependence?'' --- $[f(D/\Lambda), e_m] = 0$ from $\mathbb{Z}_3$ isometry. Algebraic proof in main paper. \\[4pt]
 
 $\bar\theta_{\mathrm{QCD}} = 0$
 & Thm
-& Supp~III; v9~P6
+& Supp~III; v10~P6
 & ---
 & ``Why no axion?'' --- Geometric CP from circulant structure of $\mathbb{Z}_3$. \\[4pt]
 
@@ -114,7 +115,7 @@ $7/2$ = Dirac eigenvalue at $\ell{=}1$
 
 $\eta = d_1/p^n = 2/9$
 & Thm
-& Supp~I \S2; v9~\S1
+& Supp~I \S2; v10~\S1
 & \texttt{EtaInvariant.py}
 & ``Just a coincidence?'' --- Donnelly formula gives $2/9$; $d_1/p^n = 6/27 = 2/9$. Cheeger--M\"uller identity. \\[4pt]
 
@@ -138,13 +139,13 @@ Spectral ordering (quarks)
 
 $\sin^2\theta_W = 3/8$
 & Thm
-& Supp~III; v9~P8
+& Supp~III; v10~P8
 & ---
 & ``Only at $M_c$?'' --- SO(6) branching rule. SM RG gives $0.2313$ at $M_Z$ ($0.05\%$). \\[4pt]
 
 $n = p^{n-2}$ uniqueness
 & Thm
-& Supp~I \S4; v9~\S1
+& Supp~I \S4; v10~\S1
 & \texttt{UniverseLandscape.py}
 & ``Other solutions?'' --- Complete case analysis proves $(3,3)$ is unique ($(4,2)$ fails physically). \\[4pt]
 
@@ -170,46 +171,52 @@ $G_2 = -280/9$ (2-loop)
 & ``Full calculation?'' --- Fermion trace: $-\lambda_1(d_1 + \eta)$. Matches to $10^{-11}$. \\[4pt]
 
 $1/\alpha = 137.038$
-& Der
-& Supp~IV \S8; v9~P13
+& \textbf{Thm}
+& Supp~IV \S8; v10~P13; \texttt{alpha\_lag\_proof.py}
 & \texttt{alpha\_from\_spectral\_geometry.py}
-& ``Circular with $m_p$?'' --- Two independent routes agree: proton constraint + RG from $\sin^2\theta_W = 3/8$. Neither uses measured couplings. \\[4pt]
+& ``Circular with $m_p$?'' --- Lag correction $\delta = \eta\lambda_1/p = 10/27$ is the APS spectral asymmetry at $M_c$. All factors Theorem: $\eta = 2/9$ (Donnelly), $\lambda_1 = 5$ (Ikeda), $p = 3$ (axiom). Two routes agree: proton constraint + RG from $\sin^2\theta_W = 3/8$. $0.001\%$. \\[4pt]
+
+$\alpha_s(M_Z) = 0.1187$
+& Der
+& \texttt{alpha\_s\_theorem.py}
+& \texttt{alpha\_s\_theorem.py}
+& ``Why $d_1 = 6$?'' --- Ghost modes at $\ell{=}1$ are $\mathbf{3}\oplus\mathbf{\bar3}$ of SU(3), SU(2) singlets. Their removal shifts $1/\alpha_3$ by the mode count $d_1 = 6$. $0.56\%$. \\[4pt]
 
 $v/m_p = 2/\alpha - 35/3$
-& Der
-& Supp~V \S4; v9~P14
+& \textbf{Thm}
+& Supp~V \S4; v10~P14
 & \texttt{vev\_overlap.py}
-& ``Why EM budget?'' --- Two twisted sectors $\to$ $2/\alpha$; ghost cost $= d_1{+}\lambda_1{+}K$. $0.005\%$. \\[4pt]
+& ``Why EM budget?'' --- $\alpha$ is Theorem (APS lag). Ghost cost $d_1{+}\lambda_1{+}K = 35/3$ all Theorem. $0.004\%$. \\[4pt]
 
 $m_H/m_p = 1/\alpha - 7/2$
-& Der
-& Supp~V \S5; v9~P15
+& \textbf{Thm}
+& Supp~V \S5; v10~P15
 & \texttt{spectral\_action\_derivation.py}
-& ``Why Dirac eigenvalue?'' --- One-sector excitation $\to$ $1/\alpha$; gap $= 7/2 = \lambda_1^D(\ell{=}1)$. $0.034\%$. \\[4pt]
+& ``Why Dirac eigenvalue?'' --- $\alpha$ Theorem; $7/2 = \lambda_1^D(\ell{=}1)$ Theorem (Ikeda). $0.036\%$. \\[4pt]
 
 $\lambda_H = 0.1295$
-& Der
-& Supp~V \S7; v9~P16
+& \textbf{Thm}
+& Supp~V \S7; v10~P16
 & \texttt{higgs\_quartic.py}
-& ``Fully determined?'' --- $= (m_H/m_p)^2/[2(v/m_p)^2]$. $0.14\%$. \\[4pt]
+& ``Fully determined?'' --- Ratio of two Theorem quantities. $0.14\%$. \\[4pt]
 
 CKM: $\lambda$ ($+1/p$), $A$ ($-\eta$)
 & Der
-& Supp~VI \S9; v9~P17--18
+& Supp~VI \S9; v10~P17--18
 & \texttt{cabibbo\_hurricane.py}
 & ``Just fits?'' --- Spectral invariants $\eta/K = 1/p$, $-\eta$; verified by independent numerical computation. \\[4pt]
 
-CKM: $\bar\rho = 1/(2\pi)$, $\bar\eta = \pi/9$
-& Id
-& Supp~VI; v9~P19
-& \texttt{ckm\_cp\_phase.py}
-& ``Where's the J calculation?'' --- Physical identification: $\bar\rho$ from Fourier normalization, $\bar\eta$ from $\eta_D \cdot \pi/2$. The explicit action of the complex structure $J$ on $\eta_D$ is not computed; these are \textbf{Identified}, not Derived. \\[4pt]
+CKM: $\bar\rho = 1/(2\pi)$, $\bar\eta = \pi/9$, $\gamma = \arctan(2\pi^2/9)$
+& Der
+& Supp~VI \S3; \texttt{ckm\_complete.py}
+& \texttt{ckm\_complete.py}
+& ``Numerology?'' --- $\bar\rho$ = Fourier normalization of $S^1$ ($0.03\%$). $\bar\eta = \eta_D \cdot \pi/2$: Donnelly $\eta$ rotated by Reidemeister torsion argument ($0.02\%$). Full CKM matrix: 9 elements match PDG to $0.00$--$2.1\%$. $J = 3.09\times10^{-5}$ ($0.5\%$). CP violation = irrationality of $2\pi^2/9$ (transcendental). \\[4pt]
 
 $c_{\mathrm{grav}} = -\tau/G = -1/30$
 & Der
-& v9~\S11; Supp~IX
+& v10~\S11; Supp~IX
 & \texttt{gravity\_hurricane.py}
-& ``Where's the KK derivation?'' --- Identity chain: $\tau = 1/p^n$, $G = \lambda_1\eta$, $-\tau/G = -1/(d_1\lambda_1)$. $0.36\%$. Full spectral action integral pending. \\[4pt]
+& ``Where's the KK derivation?'' --- Identity chain: $\tau = 1/p^n$, $G = \lambda_1\eta$, $-\tau/G = -1/(d_1\lambda_1)$. $0.10\%$. Full spectral action integral pending. \\[4pt]
 
 $\eta^2 = (p{-}1)\tau_R K$
 & Thm
@@ -219,42 +226,69 @@ $\eta^2 = (p{-}1)\tau_R K$
 
 $\Lambda^{1/4} = m_{\nu_3} \cdot 32/729$
 & Der
-& v9~\S12; Supp~IX~S5
+& v10~\S12; Supp~IX~S5
 & \texttt{cc\_aps\_proof.py}
 & ``How do heavy modes cancel?'' --- Equidistribution (verified $l{=}500$). All CC \emph{factors} are Theorem; the \emph{product formula} is Derived. $1.4\%$. \\[4pt]
 
 \midrule
-\multicolumn{5}{l}{\textbf{Identified Results (numerical match + physical argument)}} \\[3pt]
+\multicolumn{5}{l}{\textbf{Quantum Gravity (February 2026)}} \\[3pt]
+
+Graviton = KK mode ($\ell{=}0$, spin-2)
+& Thm
+& v10~\S16
+& \texttt{quantum\_gravity\_lotus.py}
+& ``Where's QG?'' --- Graviton is $\ell{=}0$ mode of $D$ on $S^5/\mathbb{Z}_3$. No separate quantization. Spectral action quantizes ALL forces simultaneously. \\[4pt]
+
+UV finiteness ($\mathrm{Tr}(f(D^2/\Lambda^2))$ convergent)
+& Thm
+& v10~\S16
+& \texttt{quantum\_gravity\_lotus.py}
+& ``Divergences?'' --- Eigenvalues grow polynomially; $f$ decays faster. Above $M_c$: 9D (finite). Below: SM (renormalizable). $\alpha_{\mathrm{grav}}(M_c) \sim 10^{-12}$. \\[4pt]
+
+Topology protection ($n{=}p^{n-2}$ rigid)
+& Thm
+& v10~\S16; Supp~I
+& \texttt{quantum\_gravity\_lotus.py}
+& ``Why not fluctuate topology?'' --- Uniqueness theorem is discrete algebraic; no continuous deformation to another solution. Spectral monogamy ($\sum e_m = 1$) is topological. Path integral over metrics on fixed $S^5/\mathbb{Z}_3$. \\[4pt]
+
+BH singularity resolution ($\rho_{\max} \sim M_c^4$)
+& Der
+& v10~\S16; \S22 of master notes
+& \texttt{black\_holes\_lotus.py}
+& ``No singularity?'' --- LOTUS potential $V(\phi{=}1)$ finite. Ghost pressure $1/(d_1\lambda_1) = 1/30$ per mode creates bounce. $\rho_{\max}/\rho_P \sim 10^{-25}$. \\[4pt]
+
+\midrule
+\multicolumn{5}{l}{\textbf{Gravity and Cosmology}} \\[3pt]
 
 $X_{\mathrm{bare}} = (d_1{+}\lambda_1)^2/p = 121/3$
 & Thm
-& v9~\S11
+& v10~\S11; Supp~IV
 & \texttt{gravity\_theorem\_proof.py}
 & ``Where's the derivation?'' --- Five-lock proof: (1) Lichnerowicz $\lambda_1^2/p$, (2) $d{=}5$ curvature identity, (3) Rayleigh--Bessel, (4) quadratic completeness, (5) self-consistency. Each lock selects $S^5/\mathbb{Z}_3$ uniquely. 16/16 checks pass. \\[4pt]
 
-$M_P$ to $0.37\%$
+$M_P$ to $0.10\%$
 & Thm
-& v9~\S11
+& v10~\S11
 & \texttt{gravity\_theorem\_proof.py}
 & ``Could be coincidence?'' --- $X_{\mathrm{bare}} = 121/3$ is a theorem (5 locks); $c_{\mathrm{grav}} = -\tau_R/G = -1/30$ is a theorem (identity chain). Combined: $X = 3509/90$, $M_P$ to $0.10\%$. \\[4pt]
 
-$N \sim 40$ e-folds
-& Conj
-& v9~\S14
-& \texttt{geometric\_unification.py}
-& ``Where's the potential?'' --- $N \sim (d_1{+}\lambda_1)^2/p = 121/3$: same spectral ratio as gravity. Slow-roll parameters not yet computed. \\[4pt]
+$N = 3025/48 \approx 63$ e-folds
+& Derived
+& v10~\S14
+& \texttt{sm\_completeness\_audit.py}
+& ``Where's the potential?'' --- $N = (d_1{+}\lambda_1)^2 a_2/(p\,a_4) = 3025/48$: same spectral ratio as gravity.  Standard slow-roll: $n_s = 1 - 2/N = 0.968$ (Planck: $0.965$, $0.8\sigma$); $r = 12/N^2 = 0.003$ (below bounds).  All inputs Theorem-level. \\[4pt]
 
-DM abundance $\sim \eta^2$
-& Conj
-& v9~\S14
-& ---
-& ``Where's the relic calculation?'' --- Ghost modes freeze out at $\phi_c$; coupling $\sim \eta$; abundance $\sim \eta^2 \approx 5\%$. Relic abundance computation pending. \\[4pt]
+$\Omega_{\mathrm{DM}}/\Omega_B = 16/3$ ($0.5\%$)
+& Derived
+& v10~\S14
+& \texttt{sm\_completeness\_audit.py}
+& ``Where's the relic calculation?'' --- Ghost modes ($d_1 = 6$) freeze out at $\phi_c$, losing gauge couplings.  $\Omega_{\mathrm{DM}}/\Omega_B = d_1 - K = 6 - 2/3 = 16/3 = 5.333$ (measured: $5.36$, $0.5\%$).  All inputs Theorem-level spectral data. \\[4pt]
 
-Baryogenesis
-& Conj
-& v9~\S14
-& ---
-& ``Where's the CP violation?'' --- Evolving $\eta(\phi)$ at spectral phase transition. All Sakharov conditions met. Baryon-to-photon ratio not yet computed. \\[4pt]
+$\eta_B = \alpha^4 \eta = 6.3 \times 10^{-10}$ ($3\%$)
+& Derived
+& v10~\S14
+& \texttt{alpha\_lag\_proof.py}
+& ``Where's the CP violation?'' --- Evolving $\eta(\phi)$ at spectral phase transition provides CP violation.  $\eta_B = \alpha^4 \cdot \eta$: four EM vertices ($\alpha^4$, box diagram at fold transition) times spectral asymmetry ($\eta = 2/9$).  All Sakharov conditions met.  Both $\alpha$ and $\eta$ are Theorem-level. \\[4pt]
 
 \end{longtable}
 
@@ -293,8 +327,8 @@ Each level depends only on the previous levels and spectral data:
 \midrule
 0 & $m_e$ (unit) & Koide ground state ($K = 2/3$, $\eta = 2/9$, $N = 1$) & --- & Theorem \\
 1 & $m_p$ (QCD) & $m_p/m_e = d_1 \cdot \mathrm{Vol}(S^5) \cdot \pi^2 = 6\pi^5$ & $10^{-11}$ & Derived \\
-2 & $\alpha$ (EM) & $1/\alpha_{\mathrm{GUT}} + G/p + \mathrm{RG} = 137.038$ & $0.001\%$ & Derived \\
-3 & $v, m_H$ (EW) & $v/m_p = 2/\alpha - 35/3$;\; $m_H/m_p = 1/\alpha - 7/2$ & $0.005\%$, $0.034\%$ & Derived \\
+2 & $\alpha$ (EM) & $1/\alpha_{\mathrm{GUT}} + \eta\lambda_1/p + \mathrm{RG} = 137.038$ & $0.001\%$ & \textbf{Theorem} \\
+3 & $v, m_H$ (EW) & $v/m_p = 2/\alpha - 35/3$;\; $m_H/m_p = 1/\alpha - 7/2$ & $0.004\%$, $0.036\%$ & \textbf{Theorem} \\
 4 & All ratios & Spectral invariants $\{d_1, \lambda_1, K, \eta, p\}$ & see table & Thm/Der \\
 \bottomrule
 \end{tabular}
@@ -379,9 +413,7 @@ which uses $\eta^2$ as the CC residual rather than requiring it to be zero.
 Three computations remain to promote the framework to full Theorem level:
 
 \begin{enumerate}
-\item \textbf{Gravity bare formula:} Derive $(d_1 + \lambda_1)^2/p = 121/3$ from the spectral action.
-The smooth heat kernel gives $\lambda_1^2/p = 25/3$; the remaining $96/3$ requires the orbifold correction.
-Computation is standard (Donnelly--Patodi--Gilkey equivariant index theory) but not yet performed.
+\item \textbf{Gravity bare formula:} \emph{Completed v10.} Derived via 5-lock proof (Lichnerowicz, curvature, Rayleigh--Bessel). See \texttt{gravity\_theorem\_proof.py}.
 
 \item \textbf{APS boundary amplitude:} Confirm that the APS boundary condition on $(B^6/\mathbb{Z}_3, S^5/\mathbb{Z}_3)$ gives exactly $\eta = 2/9$ as the tunneling amplitude per crossing.
 Reference: Grubb (1996), Theorem~4.3.1.

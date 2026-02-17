@@ -181,3 +181,62 @@ def test_spectral_cost_35_over_3():
     """Paper: d_1 + lambda_1 + K = 35/3."""
     cost = D1 + LAMBDA_1 + K_THEORY
     assert abs(cost - 35 / 3) < 1e-10
+
+
+# -----------------------------------------------------------------------------
+# TABLE: CKM / Wolfenstein (paper Section 7, Quark Flavor)
+# -----------------------------------------------------------------------------
+
+
+def test_cabibbo_lambda():
+    """Paper: lambda (Cabibbo) = eta*(1 + alpha_s/(3*pi)), PDG 0.225, ~2%."""
+    eta_D = 2 / 9
+    alpha_s = 0.1187
+    lam_pred = eta_D * (1 + alpha_s / (3 * np.pi))
+    lam_pdg = 0.22500
+    rel_err = abs(lam_pred - lam_pdg) / lam_pdg
+    assert rel_err < 0.03  # ~2%
+
+
+def test_wolfenstein_A():
+    """Paper: A = lam1/d1 * (1 - eta*alpha_s/pi), PDG 0.826, ~2%."""
+    A_bare = LAMBDA_1 / D1  # 5/6
+    A_pred = A_bare * (1 - TWIST * 0.1187 / np.pi)
+    A_pdg = 0.826
+    rel_err = abs(A_pred - A_pdg) / A_pdg
+    assert rel_err < 0.03
+
+
+def test_wolfenstein_rhobar():
+    """Paper: rho_bar = 1/(2*pi), PDG 0.159."""
+    rho_pred = 1 / (2 * np.pi)
+    rho_pdg = 0.1592
+    rel_err = abs(rho_pred - rho_pdg) / rho_pdg
+    assert rel_err < 0.1  # ~1%
+
+
+def test_wolfenstein_etabar():
+    """Paper: eta_bar = pi/9, PDG 0.349."""
+    eta_bar_pred = np.pi / 9
+    eta_bar_pdg = 0.3490
+    rel_err = abs(eta_bar_pred - eta_bar_pdg) / eta_bar_pdg
+    assert rel_err < 0.1
+
+
+# -----------------------------------------------------------------------------
+# TABLE: Quark masses (paper Section 7, downtype spectral ordering)
+# -----------------------------------------------------------------------------
+
+
+def test_down_type_quark_masses():
+    """Paper: m_q = m_lepton * exp(sigma_q), sigma from spectral ordering."""
+    PI = np.pi
+    G = LAMBDA_1 * TWIST  # 10/9
+    p = 3
+    sigma = {"b": 77 / 90, "s": -10 / 81, "d": 2 * PI / 3 + G / p**2}
+    UV = {"b": M_TAU_PDG / 1000, "s": M_MU_PDG / 1000, "d": M_E_PDG / 1000}
+    PDG = {"b": 4.183, "s": 0.0934, "d": 0.00467}
+    for q in ["b", "s", "d"]:
+        m_pred = UV[q] * np.exp(sigma[q])
+        rel_err = abs(m_pred - PDG[q]) / PDG[q]
+        assert rel_err < 0.1, f"{q}-quark: pred {m_pred:.4f}, PDG {PDG[q]}, err {rel_err*100:.1f}%"

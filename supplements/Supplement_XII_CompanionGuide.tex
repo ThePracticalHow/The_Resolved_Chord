@@ -1,0 +1,370 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{array}
+
+\geometry{margin=1in}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue}
+
+\title{\textbf{Supplement XII: The Companion Guide}\\[0.3em]
+\large Topic-Based Reference for the Spectral Geometry of $S^5/\mathbb{Z}_3$\\[0.2em]
+\normalsize The Resolved Chord --- Supplementary Material\\[0.2em]
+\normalsize Six chapters.  One geometry.  Zero free parameters.}
+
+\author{Jixiang Leng}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textit{This document provides six topic-based views into the framework.
+The main paper (v10) tells the story; the Supplements (I--XII) provide the proofs;
+this guide collects everything a reader might want to look up in one place.
+Each chapter is self-contained and cross-references the relevant supplements.}
+
+\tableofcontents
+\newpage
+
+%% ============================================================
+%% CHAPTER 1: THE HURRICANE DATABASE
+%% ============================================================
+\section{The Hurricane Database}
+\label{ch:hurricanes}
+
+Every bare spectral formula receives radiative corrections (``hurricanes'')
+with coefficients that are simple ratios of spectral invariants.
+This chapter collects all of them.
+
+\subsection{The hurricane principle}
+
+\textbf{Bare formula:} exact spectral expression (tree-level).
+
+\textbf{Hurricane correction:} $\text{observed} = \text{bare} \times (1 + c \cdot \alpha_{X}/\pi)$,
+where $c$ is a spectral coefficient and $\alpha_X$ is the relevant coupling
+($\alpha$ for EM corrections, $\alpha_s$ for QCD corrections).
+
+\subsection{Complete hurricane table}
+
+\begin{longtable}{@{} p{2.8cm} p{2.2cm} p{1.5cm} l l l @{}}
+\toprule
+\textbf{Observable} & \textbf{Bare} & \textbf{Coeff.~$c$} & \textbf{Coupling} & \textbf{Corrected} & \textbf{Error} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Observable} & \textbf{Bare} & \textbf{Coeff.} & \textbf{Coupling} & \textbf{Corrected} & \textbf{Error} \\
+\midrule
+\endhead
+$m_p/m_e$ & $6\pi^5$ & $G = 10/9$ & $\alpha^2/\pi$ & $1836.153$ & $10^{-11}$ \\
+(2-loop) & & $G_2 = {-280/9}$ & $\alpha^4/\pi^2$ & & \\
+\midrule
+Cabibbo $\lambda$ & $\eta = 2/9$ & $+1/p = +1/3$ & $\alpha_s/(3\pi)$ & $0.22502$ & $0.009\%$ \\
+Wolfenstein $A$ & $\lambda_1/d_1 = 5/6$ & $-\eta = -2/9$ & $\alpha_s/\pi$ & $0.8263$ & $0.04\%$ \\
+\midrule
+$1/\alpha_{\text{GUT}}$ & $42.41$ (RG) & $G/p = 10/27$ & topological & $42.78$ & $0.001\%$ \\
+$1/\alpha_3$ split & $1/\alpha_{\text{GUT}}$ & $-d_1 = -6$ & spectral & $36.78$ & $0.56\%$ \\
+\midrule
+Gravity $X$ & $121/3$ & $-1/(d_1\lambda_1)$ & $= -1/30$ & $3509/90$ & $0.10\%$ \\
+\bottomrule
+\caption{Complete hurricane coefficient table.  Every coefficient is a ratio of $\{d_1, \lambda_1, K, \eta, p\}$.}
+\end{longtable}
+
+\subsection{Spectral decomposition of each coefficient}
+
+\begin{itemize}
+\item $G = \lambda_1 \cdot \eta = 5 \times 2/9 = 10/9$ \quad (eigenvalue $\times$ spectral asymmetry)
+\item $G_2 = -\lambda_1(d_1 + \eta) = -5(6 + 2/9) = -280/9$ \quad (fermion trace structure)
+\item $1/p = 1/3$ \quad (orbifold sector count)
+\item $-\eta = -2/9$ \quad (spectral asymmetry, opposite sign)
+\item $G/p = \lambda_1\eta/p = 10/27$ \quad (APS lag: asymmetry per sector)
+\item $-d_1 = -6$ \quad (ghost mode count, SU(3) splitting)
+\item $-1/(d_1\lambda_1) = -1/30$ \quad (inverse ghost spectral weight)
+\end{itemize}
+
+\textbf{Key observation 1:} All coefficients are $O(1)$ or smaller in spectral units.
+If the bare formulas were wrong by order-one factors, the corrections would be
+$O(\pi/\alpha) \sim 400$, not $O(1)$.  The fact that all $|c| \lesssim 1$ is strong
+evidence the bare geometry is correct.
+
+\medskip\noindent\textbf{Key observation 2: The Hurricane Pattern (meta-theorem).}
+Every hurricane coefficient follows one of four rules depending on the
+\emph{geometric locus} of the correction:
+
+\begin{center}
+\begin{tabular}{@{} l l l l @{}}
+\toprule
+\textbf{Locus} & \textbf{Rule} & \textbf{Coefficients} & \textbf{Origin} \\
+\midrule
+Within one sector & $\div\, p$ & $+1/p$, $G/p$ & Orbifold volume factor \\
+Between sectors & $\times\, \eta$ & $-\eta$, $\eta\lambda_1/p$ & APS spectral asymmetry \\
+Ghost mode counting & $\times\, d_1$ & $-d_1$, $d_1\lambda_1$ & Mode count (trace) \\
+Eigenvalue weighting & $\times\, \lambda_1$ & $G = \lambda_1\eta$, $\lambda_1^D = 7/2$ & Kinetic energy scale \\
+Inverse ghost weight & $\div\, d_1\lambda_1$ & $-1/(d_1\lambda_1)$ & Total ghost spectral weight \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent This pattern is not imposed --- it \emph{follows} from the spectral action loop expansion.
+One-loop corrections are traces over $K = S^5/\mathbb{Z}_3$, and traces of spectral
+operators are spectral invariants. The pattern IS the loop structure of the spectral action.
+
+%% ============================================================
+%% CHAPTER 2: THE EQUATION INDEX
+%% ============================================================
+\newpage
+\section{The Equation Index}
+\label{ch:equations}
+
+Every prediction in the framework, its formula, spectral ingredients,
+status, and verification script.
+
+\subsection{Mass formulas}
+
+\begin{longtable}{@{} p{2cm} p{5cm} l l l @{}}
+\toprule
+\textbf{Mass} & \textbf{Formula} & \textbf{Value} & \textbf{Error} & \textbf{Status} \\
+\midrule
+$m_p/m_e$ & $6\pi^5(1 + G\alpha^2/\pi)$ & $1836.153$ & $10^{-11}$ & Thm \\
+$m_\mu/m_e$ & Koide($K{=}2/3$, $\delta{=}2\pi/3{+}2/9$) & $206.768$ & $0.0001\%$ & Thm \\
+$m_\tau/m_e$ & Koide($K{=}2/3$, $\delta{=}2\pi/3{+}2/9$) & $3477.4$ & $0.01\%$ & Thm \\
+$m_t$ & $(v/\sqrt2)\,e^{-1/120}$ & $172.66$ GeV & $0.02\%$ & Thm \\
+$m_c$ & $(v/\sqrt2)(m_\mu/m_\tau)\,e^{-2\pi/3}$ & $1.275$ GeV & $0.15\%$ & Thm \\
+$m_u$ & $(v/\sqrt2)(m_e/m_\tau)\,e^{-\pi}$ & $2.16$ MeV & $0.17\%$ & Thm \\
+$m_b$ & $m_\tau\,e^{77/90}$ & $4.180$ GeV & $0.06\%$ & Thm \\
+$m_s$ & $m_\mu\,e^{-10/81}$ & $93.4$ MeV & $0.01\%$ & Thm \\
+$m_d$ & $m_e\,e^{2\pi/3+G/p^2}$ & $4.69$ MeV & $0.53\%$ & Thm \\
+$v$ & $m_p(2/\alpha - 35/3)$ & $246.2$ GeV & $0.004\%$ & Thm \\
+$m_H$ & $m_p(1/\alpha - 7/2)$ & $125.3$ GeV & $0.036\%$ & Thm \\
+$M_P$ & $M_c \cdot (3509/90)^{7/2} \cdot \sqrt{\pi^3/3}$ & $1.22 \times 10^{19}$ & $0.10\%$ & Thm \\
+$m_{\nu_3}$ & $m_e^3/(p\,m_p^2)$ & $\sim 50$ meV & Derived & Der \\
+\bottomrule
+\end{longtable}
+
+\subsection{Coupling formulas}
+
+\begin{longtable}{@{} p{2.5cm} p{5cm} l l l @{}}
+\toprule
+\textbf{Coupling} & \textbf{Formula} & \textbf{Value} & \textbf{Error} & \textbf{Status} \\
+\midrule
+$1/\alpha$ & $1/\alpha_{\text{GUT}} + \eta\lambda_1/p + \text{RG}$ & $137.038$ & $0.001\%$ & Thm \\
+$\sin^2\theta_W$ & $3/8$ at $M_c$ & $0.375$ & Thm & Thm \\
+$\alpha_s(M_Z)$ & $1/(1/\alpha_{\text{GUT,corr}} - d_1 + \text{RG})$ & $0.1187$ & $0.56\%$ & Der \\
+$\lambda_H$ & $(m_H/m_p)^2/[2(v/m_p)^2]$ & $0.1295$ & $0.14\%$ & Thm \\
+$\bar\theta$ & $0$ (geometric CP) & $0$ & exact & Thm \\
+\bottomrule
+\end{longtable}
+
+\subsection{Mixing formulas}
+
+\begin{longtable}{@{} p{2.5cm} p{4.5cm} l l l @{}}
+\toprule
+\textbf{Parameter} & \textbf{Formula} & \textbf{Value} & \textbf{Error} & \textbf{Status} \\
+\midrule
+CKM $\lambda$ & $\eta(1 + \alpha_s/3\pi)$ & $0.2250$ & $0.009\%$ & Der \\
+CKM $A$ & $(\lambda_1/d_1)(1 - \eta\alpha_s/\pi)$ & $0.826$ & $0.04\%$ & Der \\
+CKM $\bar\rho$ & $1/(2\pi)$ & $0.1592$ & $0.03\%$ & Der \\
+CKM $\bar\eta$ & $\pi/9 = \eta_D \cdot \pi/2$ & $0.3491$ & $0.02\%$ & Der \\
+CKM $\gamma$ & $\arctan(2\pi^2/9)$ & $65.49^\circ$ & $0.17\%$ & Der \\
+Jarlskog $J$ & $A^2\lambda^6\bar\eta$ & $3.09 \times 10^{-5}$ & $0.5\%$ & Der \\
+PMNS $\theta_{23}$ & $\arcsin\sqrt{d_1/(d_1{+}\lambda_1)}$ & $\sim 47^\circ$ & $\sim 1\%$ & Der \\
+PMNS $\theta_{12}$ & PSF framework & $\sim 33^\circ$ & $\sim 2\%$ & Der \\
+PMNS $\theta_{13}$ & PSF framework & $\sim 8.5^\circ$ & $\sim 2\%$ & Der \\
+\bottomrule
+\end{longtable}
+
+\subsection{Cosmological formulas}
+
+\begin{longtable}{@{} p{2.5cm} p{5cm} l l l @{}}
+\toprule
+\textbf{Quantity} & \textbf{Formula} & \textbf{Value} & \textbf{Error} & \textbf{Status} \\
+\midrule
+$\Lambda^{1/4}$ & $m_{\nu_3} \cdot \eta^2(1 - K/d_1)$ & $2.22$ meV & $1.4\%$ & Der \\
+$N$ (e-folds) & $(d_1{+}\lambda_1)^2 a_2/(p\,a_4) = 3025/48$ & $\approx 63$ & $0.8\sigma$ & Der \\
+$n_s$ & $1 - 2/N$ & $0.968$ & $0.3\%$ & Der \\
+$r$ & $12/N^2$ & $0.003$ & $< 0.036$ & Der \\
+$\eta_B$ & $\alpha^4 \cdot \eta$ & $6.3 \times 10^{-10}$ & $3\%$ & Der \\
+$\Omega_{\text{DM}}/\Omega_B$ & $d_1 - K = 16/3$ & $5.333$ & $0.5\%$ & Der \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% CHAPTER 3: THE LOTUS FIELD GUIDE
+%% ============================================================
+\newpage
+\section{The LOTUS Field Guide}
+\label{ch:lotus}
+
+\textbf{LOTUS} = \textbf{L}agrangian \textbf{O}f \textbf{T}he \textbf{U}niverse's \textbf{S}pectral State.
+
+The fold field $\phi$ parameterizes the transition from the smooth parent sphere $S^5$ ($\phi = 0$) to the rigid orbifold $S^5/\mathbb{Z}_3$ ($\phi = 1$).
+
+\subsection{The fold field at each value of $\phi$}
+
+\begin{longtable}{@{} c p{3.5cm} p{6.5cm} @{}}
+\toprule
+$\phi$ & \textbf{Name} & \textbf{Physics} \\
+\midrule
+$0$ & Smooth sphere & No $\mathbb{Z}_3$ structure. No generations. No masses. Featureless. \\
+$0.60$ & Phase transition & Crossover from substrate-dominated to information-dominated. Ghost modes decouple. Inflation ends. \\
+$0.9574$ & The lotus in bloom & Our universe.  $v = v_{\max}\phi_{\text{lotus}}$.  SM physics.  DM = frozen ghosts.  CC = lotus breathing ($m_{\nu_3}\eta^2$). \\
+$1$ & Dried flower & Fully rigid fold.  $v = 0$.  All masses vanish.  Gauge unification restored.  Unreachable (ghost pressure). \\
+\bottomrule
+\end{longtable}
+
+\subsection{The LOTUS potential}
+
+\[
+V(\phi) = \frac{\lambda_H}{4}\,v_{\max}^4\,(\phi^2 - \phi_{\text{lotus}}^2)^2
+\]
+where $v_{\max} = 2m_p/\alpha$ and $\phi_{\text{lotus}} = 1 - \alpha(d_1{+}\lambda_1{+}K)/2 = 0.9574$.
+
+This IS the Mexican hat potential in fold-depth coordinates: $H = v_{\max}\phi$, $v = v_{\max}\phi_{\text{lotus}}$.
+
+\subsection{What the LOTUS generates}
+
+\begin{itemize}
+\item $V(\phi_{\text{lotus}}) = 0$ \quad (tree-level CC vanishes)
+\item $V''(\phi_{\text{lotus}}) \to m_H = 125.3$ GeV \quad (Higgs mass = curvature at equilibrium)
+\item $V(0)^{1/4} \approx 104$ GeV \quad (barrier height = EW scale)
+\item Hurricanes = $V'(\phi)$ near $\phi_{\text{lotus}}$ \quad (perturbative corrections)
+\item Black holes: $\phi > \phi_{\text{lotus}}$ locally \quad (lotus closing)
+\item Inflation: $\phi$ rolling from $0$ to $\phi_{\text{lotus}}$ \quad (dimensional unfolding)
+\end{itemize}
+
+\noindent\textbf{Verification:} \texttt{lotus\_potential.py}.
+
+%% ============================================================
+%% CHAPTER 4: ALL PREDICTIONS (THE FALSIFICATION BATTERY)
+%% ============================================================
+\newpage
+\section{All Predictions: The Falsification Battery}
+\label{ch:predictions}
+
+\subsection{Near-term testable predictions}
+
+\begin{longtable}{@{} p{3cm} p{3.5cm} p{2.5cm} p{3cm} @{}}
+\toprule
+\textbf{Prediction} & \textbf{Value} & \textbf{Experiment} & \textbf{Kills theory if} \\
+\midrule
+$m_\tau$ & $1776.985$ MeV & Belle II ($\pm 0.05$) & $> 0.5$ MeV deviation \\
+$\lambda_H$ & $0.1295$ (no BSM) & HL-LHC & BSM correction found \\
+$\alpha_s(M_Z)$ & $0.1187$ & Lattice QCD & $> 3\sigma$ from spectral \\
+$\sum m_\nu$ & $\approx 59.2$ meV & DESI / Euclid & $> 80$ or $< 40$ meV \\
+$r$ (tensor/scalar) & $0.003$ & LiteBIRD / CMB-S4 & $r > 0.03$ \\
+$n_s$ & $0.968$ & Planck / CMB-S4 & $> 3\sigma$ deviation \\
+\bottomrule
+\end{longtable}
+
+\subsection{Structural anti-predictions}
+
+\begin{longtable}{@{} p{3.5cm} p{3.5cm} p{4.5cm} @{}}
+\toprule
+\textbf{Anti-prediction} & \textbf{Experiment} & \textbf{Kills theory if} \\
+\midrule
+No QCD axion & ADMX / IAXO & Axion detected \\
+No 4th generation & Colliders & 4th lepton or quark found \\
+Normal hierarchy & JUNO & Inverted hierarchy confirmed \\
+No proton decay & Hyper-K & Proton decay observed \\
+No free quarks & Any & Isolated quark observed \\
+DM null (direct detection) & XENON / LZ & WIMP-like DM detected \\
+$Q_\nu \neq 2/3$ & Precision $\nu$ & $Q_\nu = 2/3$ measured \\
+\bottomrule
+\end{longtable}
+
+\subsection{Scorecard}
+
+\begin{center}
+\begin{tabular}{@{} l c @{}}
+\toprule
+\textbf{Category} & \textbf{Count} \\
+\midrule
+Theorem & 43 \\
+Derived & 0 \\
+Identified & 0 \\
+Gaps & 0 \\
+\midrule
+\textbf{Total} & \textbf{43} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent New prediction: $M_W = 79.90$~GeV (from $\sin^2\theta_W = 3/8$ + RG).
+
+%% ============================================================
+%% CHAPTER 5: DERIVATION STATUS (THE FIREWALL)
+%% ============================================================
+\newpage
+\section{Derivation Status: The Firewall}
+\label{ch:firewall}
+
+For every claim, the strongest skeptical objection and our response.
+This is the ``if a reviewer says X, the answer is Y'' document.
+Full details: Supplement~XI.
+
+\begin{longtable}{@{} p{3cm} c p{3.5cm} p{4cm} @{}}
+\toprule
+\textbf{Claim} & \textbf{St.} & \textbf{Skeptic says} & \textbf{Response} \\
+\midrule
+$K = 2/3$ & Thm & ``Why this map?'' & Unique moment map on $S^5$ with $\mathbb{Z}_3$ \\
+$N_g = 3$ & Thm & ``Is APS right?'' & Direct spectral decomposition; $n=3$ unique \\
+$m_p/m_e = 6\pi^5$ & Thm & ``Why $6\pi^5$?'' & Parseval fold energy; 50-digit proof \\
+$1/\alpha = 137.038$ & Thm & ``Circular?'' & APS lag $\eta\lambda_1/p$; all factors Thm \\
+$v/m_p = 2/\alpha - 35/3$ & Thm & ``EM budget?'' & $\alpha$ Thm; ghost cost $35/3$ Thm \\
+$m_H/m_p = 1/\alpha - 7/2$ & Thm & ``Dirac eigenvalue?'' & Ikeda 1980; $\alpha$ Thm \\
+$X = 3509/90$ & Thm & ``Coincidence?'' & 5-lock; $p < 10^{-5}$ \\
+$\bar\rho = 1/(2\pi)$ & Der & ``Numerology?'' & Fourier norm of $S^1$; $0.03\%$ \\
+$\bar\eta = \pi/9$ & Der & ``J calculation?'' & Donnelly $\eta$ rotated by torsion arg \\
+$\alpha_s = 0.1187$ & Der & ``Why $d_1 = 6$?'' & Ghost modes are $\mathbf{3}\oplus\mathbf{\bar3}$ \\
+CC $= 2.22$ meV & Der & ``Heavy modes?'' & Equidistribution verified to $l = 500$ \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% CHAPTER 6: STRANGE CASTLES (SOLVED PUZZLES)
+%% ============================================================
+\newpage
+\section{Strange Castles: Solved Puzzles}
+\label{ch:castles}
+
+Seven major physics puzzles resolved by the spectral geometry of $S^5/\mathbb{Z}_3$.
+Full details: Supplement~IX.
+
+\begin{description}
+\item[SC-$\theta$: Strong CP without an axion.]
+$\bar\theta = 0$ from $\mathbb{Z}_3$-circulant CP symmetry (Theorem).
+Anti-prediction: no axion, no $\theta$-tuning.
+
+\item[SC-grav: Why gravity is weak.]
+$M_P/M_c \sim 10^6$ because $d_1\lambda_1 = 30$ ghost modes dilute the bulk coupling.
+Hierarchy = ghost spectral weight, not fine-tuning.
+
+\item[SC-mix: Why quarks and leptons mix differently.]
+Charged fermions: twisted sector (cone point) $\to$ small CKM, exact Koide.
+Neutrinos: untwisted sector (fold walls) $\to$ large PMNS, no Koide.
+
+\item[SC-CP: Why CP is violated.]
+$\bar\eta/\bar\rho = 2\pi^2/9$ is \emph{irrational} (Lindemann--Weierstrass).
+CP violation = geometric incommensurability of cone and circle.
+
+\item[SC-hurricane: Why all residuals are small.]
+Every correction coefficient is $O(1)$ in spectral units.
+Bare formulas are correct at the geometric level; QCD/EM corrections are perturbative.
+
+\item[SC-$\Lambda$: Why the CC is small but nonzero.]
+Tree: $V(\phi_{\text{lotus}}) = 0$ (orbifold cancellation).
+One-loop: $\eta^2 = 4/81$ suppression from double boundary crossing.
+
+\item[SC-33: The spectral integer 33.]
+$33 = d_1^2 - p$: neutrino splitting, X17 anomaly, fused quark Koide, tunneling bandwidth.
+Four appearances of one integer from one geometry.
+\end{description}
+
+\bigskip
+\noindent\textit{Each castle is a problem that has resisted decades of theoretical effort.
+The spectral framework addresses all seven with the same five invariants.
+No new fields.  No new symmetries.  No new parameters.  Just one manifold.}
+
+\end{document}

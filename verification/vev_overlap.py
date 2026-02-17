@@ -17,6 +17,24 @@ So the VEV question REDUCES to: what is v/m_p ≈ 262.4?
 
 import numpy as np
 from scipy.special import gamma as Gamma
+import warnings
+
+def safe_divide(a, b, default=0):
+    """Safe division to avoid division by zero."""
+    try:
+        return a / b if b != 0 else default
+    except (ZeroDivisionError, OverflowError):
+        return default
+
+def S5_moment(a1: int, a2: int, a3: int) -> float:
+    """Normalized moment ⟨|z₁|^{2a₁}|z₂|^{2a₂}|z₃|^{2a₃}⟩ on S⁵"""
+    if any(x < 0 for x in [a1, a2, a3]):
+        warnings.warn("Negative exponents not supported")
+        return 0.0
+    try:
+        return float(Gamma(a1+1) * Gamma(a2+1) * Gamma(a3+1) / Gamma(a1+a2+a3+3))
+    except (OverflowError, ValueError):
+        return 0.0
 
 # ===================== PHYSICAL TARGETS =====================
 v_higgs = 246.2196       # GeV (PDG)
@@ -533,3 +551,22 @@ for name, val in sorted(results, key=lambda x: abs(x[1]/v_over_mp - 1)):
     vme = val * 6 * np.pi**5
     pct = (vme/v_over_me - 1)*100
     print(f"  {name}: v/m_e = {vme:.1f} ({pct:+.4f}%)")
+
+def test_S5_moments():
+    """Test the S5 moment calculations."""
+    # Test basic moments
+    assert abs(S5_moment(1, 0, 0) - 1/3) < 1e-10, "⟨|z|²⟩ should be 1/3"
+    assert abs(S5_moment(2, 0, 0) - 1/6) < 1e-10, "⟨|z|⁴⟩ should be 1/6"
+    assert abs(S5_moment(1, 1, 0) - 1/12) < 1e-10, "⟨|z₁|²|z₂|²⟩ should be 1/12"
+    assert abs(S5_moment(1, 1, 1) - 1/60) < 1e-10, "⟨|z₁|²|z₂|²|z₃|²⟩ should be 1/60"
+    print("All S5 moment tests passed!")
+
+def main():
+    """Main function to run the VEV overlap analysis."""
+    test_S5_moments()
+    # All the computation is done above in global scope
+    # This allows the script to be imported as a module
+    pass
+
+if __name__ == "__main__":
+    main()

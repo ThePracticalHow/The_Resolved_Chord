@@ -386,6 +386,17 @@ ax_E.text(0.05, 0.98, text_content, transform=ax_E.transAxes,
           bbox=dict(boxstyle='round', facecolor='#f8f9fa',
                     edgecolor='#27ae60', linewidth=2, alpha=0.95))
 
-plt.savefig('UniverseLandscape.png', dpi=150, bbox_inches='tight')
-plt.show()
-print("\nSaved: UniverseLandscape.png")
+try:
+    plt.savefig('UniverseLandscape.png', dpi=150, bbox_inches='tight')
+    print("\nSaved: UniverseLandscape.png")
+except PermissionError:
+    print("\nCould not save UniverseLandscape.png (permission denied)")
+    print("Plot data computed successfully but file save failed")
+
+# Only show plot interactively if we have a display (not in automated testing)
+import os
+if os.environ.get('DISPLAY') or os.name == 'nt':  # Windows or X11 display available
+    try:
+        plt.show()
+    except:
+        pass  # Silently skip if display fails

@@ -267,32 +267,15 @@ for n in range(0, 21):
         c2 = (a_n/2)**2  # energy of DC component
         print(f"{n:4d} {float(a_n):>14.8f} {float(b_n):>14.8f} {float(c2):>14.8f} {'---':>14}")
     else:
+        # Fourier coefficients for n >= 1:
         # a_n = (3/pi) * integral_0^{2pi/3} cos(theta) cos(3n*theta) d(theta)
-        # Using product-to-sum: cos(A)cos(B) = [cos(A-B) + cos(A+B)]/2
-        # = (3/(2*pi)) * [integral cos((3n-1)theta) + cos((3n+1)theta)] d(theta)
-        # = (3/(2*pi)) * [sin((3n-1)*2pi/3)/(3n-1) + sin((3n+1)*2pi/3)/(3n+1)]
-
-        if 3*n == 1:
-            # Special case: 3n-1 = 0
-            a_n = (3/(2*pi)) * (2*pi/3 + sin((3*n+1)*2*pi/3)/(3*n+1))
-        else:
-            a_n = (3/(2*pi)) * (sin((3*n-1)*2*pi/3)/(3*n-1) + sin((3*n+1)*2*pi/3)/(3*n+1))
-
         # b_n = (3/pi) * integral_0^{2pi/3} cos(theta) sin(3n*theta) d(theta)
-        # = (3/(2*pi)) * [integral sin((3n+1)theta) - sin((3n-1)theta)] d(theta)
-        # Note: sin(A)cos(B) = [sin(A+B) + sin(A-B)]/2, so
-        # cos(theta)sin(3n*theta) = [sin((3n+1)theta) + sin((3n-1)theta)]/2
-
-        # Actually: cos(A)sin(B) = [sin(A+B) - sin(A-B)]/2
-        # cos(theta)sin(3n*theta) = [sin(3n*theta + theta) - sin(3n*theta - theta)]/2
-        #                         = [sin((3n+1)theta) - sin((3n-1)theta)]/2
-
-        if 3*n == 1:
-            b_n = (3/(2*pi)) * ((-cos((3*n+1)*2*pi/3) + 1)/(3*n+1) - (2*pi/3 - 0))
-            # Hmm, this gets messy. Let me just use numerical integration.
-            pass
-
-        # Actually let's just compute numerically for clarity
+        #
+        # Analytic formulas exist (product-to-sum identities) but require
+        # special handling when 3n-1=0 or 3n+1=0 — i.e. n=1/3 or n=-1/3.
+        # For integer n in [1,20], 3n is never 1, so the analytic branch
+        # (3n==1) would be unreachable. We use numerical integration for
+        # clarity and to avoid division-by-zero edge cases in the analytic form.
         from mpmath import quad as mpquad
 
         a_n = (3/pi) * mpquad(lambda t: cos(t) * cos(3*n*t), [0, 2*pi/3])

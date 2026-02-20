@@ -1,0 +1,11 @@
+# LOTUS Core Requirements
+# Core LOTUS uses only Python stdlib (math module)
+# These dependencies are for extended functionality, testing, and development
+
+numpy
+scipy
+mpmath
+matplotlib
+pymupdf
+tqdm
+pytest

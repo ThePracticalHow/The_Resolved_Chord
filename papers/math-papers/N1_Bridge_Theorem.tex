@@ -1,0 +1,611 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+\emergencystretch=1em
+
+\geometry{margin=1.2in}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{nonexample}[theorem]{Non-Example}
+
+\title{\textbf{Equivariant Spectral Decomposition\\with Coefficient One}\\[0.5em]
+\large A Universal Tool for Orbifold Spectral Theory}
+
+\author{Jixiang Leng}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $D$ be a self-adjoint operator with compact resolvent on a Hilbert space $\mathcal{H}$,
+and let $G$ be a finite group acting on $\mathcal{H}$ by unitaries that commute with $D$.
+We prove that for any bounded Borel function $f$ and any minimal central idempotent $e_m$
+of $\mathbb{C}[G]$, the identity $\mathrm{Tr}(f(D)\,e_m) = \mathrm{Tr}(f(D_m))$ holds
+with coefficient exactly $1$, where $D_m = D|_{e_m\mathcal{H}}$.
+The proof is three lines of functional calculus, but the result is not trivial:
+we exhibit an explicit counterexample (a non-isometric $\mathbb{Z}_2$ action on $S^1$)
+where the coefficient becomes cutoff-dependent.
+We then demonstrate five applications where this ``coefficient one'' identity
+eliminates ambiguities that would otherwise undermine physical or mathematical conclusions:
+(i)~spectral action sector decomposition on orbifolds,
+(ii)~heat kernel asymptotics and one-loop effective actions,
+(iii)~Casimir energy on orbifold compactifications,
+(iv)~equivariant index theory and generation counting,
+and (v)~band structure in crystallographic point groups.
+We also discuss obstructions (non-finite groups, continuous spectrum, anti-unitary actions)
+and a connection to equivariant K-theory via the Baum--Connes assembly map.
+\end{abstract}
+
+%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+%% ============================================================
+
+A recurring situation in spectral geometry and mathematical physics:
+an operator $D$ acts on a Hilbert space $\mathcal{H}$, a finite group $G$
+acts by symmetries, and the spectrum decomposes into sectors labeled by
+the irreducible representations of $G$.  A spectral quantity
+--- a trace, a zeta value, a heat coefficient, an eta invariant ---
+is computed for each sector.  The question arises:
+
+\medskip
+\begin{center}
+\textit{Does the per-sector quantity depend on the regularization scheme?}
+\end{center}
+\medskip
+
+\noindent If it does, the decomposition is an artifact; if it does not, it is a geometric
+invariant.  The purpose of this paper is to provide a single, general theorem that settles
+this question for all finite isometric group actions, and to demonstrate its reach through
+a catalog of applications.
+
+The theorem itself is elementary --- three steps of functional calculus --- and experts in
+operator algebra may regard it as ``well known.''  However, we argue that its value lies not
+in the proof but in the \emph{generality of application}.  Like a wrench, the tool is simple;
+the art is knowing which bolts it fits.  We exhibit five such bolts from different areas of
+mathematics and physics, and one explicit counterexample showing that the result has content:
+it fails when the isometry condition is violated.
+
+%% ============================================================
+\section{Setup and Notation}
+\label{sec:setup}
+%% ============================================================
+
+\begin{definition}[Spectral triple with finite group action]\label{def:setup}
+Let $(\mathcal{H}, D)$ be a spectral datum consisting of:
+\begin{itemize}
+\item A separable Hilbert space $\mathcal{H}$.
+\item A self-adjoint operator $D$ with compact resolvent (hence discrete
+spectrum $\{\lambda_n\}_{n \in \mathbb{N}}$ with $|\lambda_n| \to \infty$).
+\end{itemize}
+Let $G$ be a finite group acting on $\mathcal{H}$ by unitary operators
+$\rho: G \to \mathcal{U}(\mathcal{H})$ satisfying the \textbf{isometry condition}:
+\begin{equation}
+\rho(g)\, D = D\, \rho(g) \qquad \text{for all } g \in G.
+\label{eq:commutation}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Minimal central idempotents]\label{def:idempotents}
+The group algebra $\mathbb{C}[G]$ decomposes as a direct sum of matrix algebras,
+one for each irreducible representation $\pi_m$ of $G$ ($m = 0, 1, \ldots, r-1$
+where $r$ is the number of irreducible representations).  The \textbf{minimal central
+idempotents} are:
+\begin{equation}
+e_m = \frac{\dim \pi_m}{|G|} \sum_{g \in G} \overline{\chi_m(g)}\, \rho(g),
+\label{eq:idempotent}
+\end{equation}
+where $\chi_m$ is the character of $\pi_m$.  These satisfy:
+\begin{align}
+e_m^2 &= e_m, \label{eq:idem-square}\\
+e_m e_{m'} &= 0 \quad\text{for } m \neq m', \label{eq:idem-orthogonal}\\
+\sum_{m=0}^{r-1} e_m &= \mathbf{1}. \label{eq:partition-of-unity}
+\end{align}
+\end{definition}
+
+\begin{definition}[Sector Hilbert space and restricted operator]
+The $m$-th sector Hilbert space is $\mathcal{H}_m = e_m \mathcal{H}$.
+The restricted operator is $D_m = D|_{\mathcal{H}_m}$.
+\end{definition}
+
+%% ============================================================
+\section{The Main Theorem}
+\label{sec:main}
+%% ============================================================
+
+\begin{theorem}[Coefficient One]\label{thm:N1}
+Let $(\mathcal{H}, D, G, \rho)$ be as in Definition~\ref{def:setup}, satisfying the
+isometry condition~\eqref{eq:commutation}.  Let $f: \mathbb{R} \to \mathbb{C}$ be a Borel function such that $f(D)$ is
+trace-class\footnote{This holds for heat kernels $f(x) = e^{-tx^2}$,
+resolvents $f(x) = (x^2 + m^2)^{-s}$ with $\mathrm{Re}(s)$ sufficiently large,
+smooth cutoffs with sufficient decay, and more generally any $f$ for which
+$\sum_n |f(\lambda_n)| < \infty$.  The eta function case $f(x) = \mathrm{sign}(x)|x|^{-s}$
+is handled by analytic continuation.}.
+Then for each minimal central idempotent $e_m$:
+\begin{equation}
+\boxed{\mathrm{Tr}(f(D)\, e_m) = \mathrm{Tr}(f(D_m)).}
+\label{eq:main}
+\end{equation}
+In particular, the coefficient of every per-sector spectral quantity
+(eta invariant, heat coefficient, zeta value) is exactly $1$, independent of $f$.
+\end{theorem}
+
+\begin{proof}
+The proof proceeds in three steps.
+
+\medskip\noindent\textbf{Step 1: $f(D)$ commutes with $e_m$.}
+
+Since $G$ acts by isometries, $\rho(g) D = D \rho(g)$ for all $g \in G$.
+By the functional calculus for self-adjoint operators, for any bounded Borel function $f$:
+\begin{equation}
+\rho(g)\, f(D) = f(D)\, \rho(g) \qquad \text{for all } g \in G.
+\label{eq:f-commutes-g}
+\end{equation}
+\emph{Proof of~\eqref{eq:f-commutes-g}:}
+Let $D = \int \lambda\, dE(\lambda)$ be the spectral decomposition, so
+$f(D) = \int f(\lambda)\, dE(\lambda)$.  Since $\rho(g)$ commutes with $D$,
+it commutes with every spectral projection $E(B)$ for Borel sets $B \subset \mathbb{R}$
+(standard result: see~\cite{reed-simon}, Theorem VIII.5).  Therefore $\rho(g)$ commutes
+with $\int f(\lambda)\, dE(\lambda) = f(D)$.
+
+Since $e_m$ is a $\mathbb{C}$-linear combination of the $\rho(g)$
+(equation~\eqref{eq:idempotent}), it follows that:
+\begin{equation}
+[f(D),\, e_m] = 0.
+\label{eq:f-commutes-em}
+\end{equation}
+
+\medskip\noindent\textbf{Step 2: The trace decomposes.}
+
+Since $e_m$ is a projection ($e_m^2 = e_m$) and commutes with $f(D)$,
+the operator $f(D)\, e_m = e_m\, f(D)\, e_m$ acts on $\mathcal{H}_m = e_m\mathcal{H}$.
+Let $\{|\psi_n^{(m)}\rangle\}$ be an orthonormal eigenbasis of $D_m$ in $\mathcal{H}_m$
+with eigenvalues $\{\lambda_n^{(m)}\}$.  Then:
+\begin{align}
+\mathrm{Tr}(f(D)\, e_m)
+&= \sum_n \langle \psi_n^{(m)} | f(D)\, e_m | \psi_n^{(m)} \rangle
+\label{eq:trace-expand}\\
+&= \sum_n \langle \psi_n^{(m)} | f(D) | \psi_n^{(m)} \rangle
+\qquad \text{(since $e_m |\psi_n^{(m)}\rangle = |\psi_n^{(m)}\rangle$)}
+\label{eq:em-acts}\\
+&= \sum_n f(\lambda_n^{(m)})
+\qquad \text{(since $|\psi_n^{(m)}\rangle$ is an eigenstate of $D$)}
+\label{eq:eigenvalue}\\
+&= \mathrm{Tr}(f(D_m)).
+\label{eq:final}
+\end{align}
+
+\medskip\noindent\textbf{Step 3: The coefficient is $1$.}
+
+Equation~\eqref{eq:final} shows $\mathrm{Tr}(f(D)\, e_m) = \mathrm{Tr}(f(D_m))$
+with coefficient exactly $1$, for any trace-class $f(D)$.
+No normalization, no $f$-dependent prefactor.  \qed
+\end{proof}
+
+%% ============================================================
+\section{Why the Result Is Not Trivial: A Counterexample}
+\label{sec:counterexample}
+%% ============================================================
+
+One might suspect that Theorem~\ref{thm:N1} is vacuous --- that ``the coefficient is
+always~$1$'' regardless of assumptions.  We show this is false: when the isometry
+condition~\eqref{eq:commutation} is violated, the coefficient becomes $f$-dependent.
+
+\begin{example}[Non-isometric $\mathbb{Z}_2$ action on $S^1$]\label{ex:counter}
+Let $\mathcal{H} = L^2(S^1)$ with the standard Dirac operator $D_0 = -i\,d/d\theta$,
+spectrum $\{n : n \in \mathbb{Z}\}$.  Let $\mathbb{Z}_2$ act by the reflection
+$\theta \mapsto -\theta$, which is an isometry of the round $S^1$.
+In this case, $[\rho(\sigma), D_0] = 0$ and Theorem~\ref{thm:N1} applies:
+all spectral quantities decompose with coefficient $1$.
+
+Now deform the metric: let $D_\epsilon = -i\,h(\theta)^{-1}\, d/d\theta$
+where $h(\theta) = 1 + \epsilon \cos\theta$ ($|\epsilon| < 1$).
+The reflection $\theta \mapsto -\theta$ preserves $h$ (since $h(-\theta) = h(\theta)$),
+so it is still an isometry and $[\rho(\sigma), D_\epsilon] = 0$.
+Theorem~\ref{thm:N1} still applies.
+
+But consider instead the \emph{non-isometric} action $\theta \mapsto \theta + \pi$
+(translation by half-period) with the \emph{same} deformed metric $h(\theta) = 1 + \epsilon\cos\theta$.
+Since $h(\theta + \pi) = 1 - \epsilon\cos\theta \neq h(\theta)$ for $\epsilon \neq 0$,
+this action does \emph{not} preserve the metric.  Therefore
+$[\rho(\sigma), D_\epsilon] \neq 0$, and:
+\begin{equation}
+\mathrm{Tr}(f(D_\epsilon)\, e_{\mathrm{even}}) \neq \mathrm{Tr}(f((D_\epsilon)_{\mathrm{even}}))
+\quad\text{for generic } f.
+\end{equation}
+Explicitly: the eigenvalues of $D_\epsilon$ are $\mu_n = n + \epsilon\, c_n + O(\epsilon^2)$
+where the perturbation coefficients $c_n$ depend on the parity of $n$ asymmetrically.
+The even-sector trace $\sum_{n\,\mathrm{even}} f(\mu_n)$ differs from
+$\mathrm{Tr}(f(D_\epsilon)\, e_{\mathrm{even}})$ by $O(\epsilon)$ corrections whose
+sign and magnitude depend on $f$.  The ``coefficient'' is no longer $1$ but a
+function of the cutoff.
+\end{example}
+
+\begin{remark}[The isometry condition has teeth]
+The counterexample shows that Theorem~\ref{thm:N1} is genuinely a theorem
+about isometric group actions.  The word ``isometry'' cannot be weakened to
+``diffeomorphism,'' ``conformal map,'' or ``homeomorphism.''
+The wrench fits only isometric bolts.
+\end{remark}
+
+%% ============================================================
+\section{Application 1: Spectral Action on Orbifolds}
+\label{sec:spectral-action}
+%% ============================================================
+
+\begin{corollary}[Cutoff independence of sector corrections]\label{cor:spectral-action}
+In the Connes--Chamseddine spectral action~\cite{connes1996,chamseddine2011},
+the bosonic action on a Riemannian orbifold $M/G$ is
+$S = \mathrm{Tr}(f(D/\Lambda))$ where $f$ is a cutoff function and $\Lambda$ a scale.
+The sector decomposition
+\begin{equation}
+S = \sum_{m=0}^{r-1} S_m, \qquad S_m = \mathrm{Tr}(f(D_m/\Lambda)),
+\end{equation}
+holds with coefficient~$1$ per sector, independent of the choice of $f$.
+\end{corollary}
+
+This is the original motivation for the theorem.  Applied to $S^5/\mathbb{Z}_3$:
+the three $\mathbb{Z}_3$ sectors ($\chi_0$, $\chi_1$, $\chi_2$) contribute
+their respective eta invariants $\eta_D(\chi_m)$ to the Yukawa coupling phase
+with coefficient exactly $1$, regardless of whether $f$ is a sharp cutoff,
+a smooth Schwartz function, or a heat kernel.  This eliminates a potential source
+of scheme dependence in the derivation of the Koide phase
+$\delta = 2\pi/3 + 2/9$ from the spectral geometry of $S^5/\mathbb{Z}_3$~\cite{leng2026}.
+
+\begin{remark}
+The Seeley--DeWitt expansion $\mathrm{Tr}(f(D/\Lambda)) \sim \sum_k f_k \Lambda^{d-k} a_k(D)$
+involves ``moments'' $f_k = \int_0^\infty f(u)\, u^{k/2-1}\, du$ that \emph{do} depend on $f$.
+The theorem does not say these moments are universal --- it says the
+\emph{sector decomposition} $a_k = \sum_m a_k^{(m)}$ is universal.
+The moments multiply the total; the decomposition multiplies with coefficient $1$.
+\end{remark}
+
+%% ============================================================
+\section{Application 2: Heat Kernel Asymptotics}
+\label{sec:heat}
+%% ============================================================
+
+\begin{corollary}[Heat trace decomposition]\label{cor:heat}
+Let $D$ be the Dirac operator on a compact Riemannian orbifold $M/G$.
+The heat trace
+\begin{equation}
+K(t) = \mathrm{Tr}(e^{-tD^2}) = \sum_{n} e^{-t\lambda_n^2}
+\end{equation}
+decomposes by $G$-representation sector as:
+\begin{equation}
+K(t) = \sum_{m=0}^{r-1} K_m(t), \qquad K_m(t) = \mathrm{Tr}(e^{-tD_m^2}),
+\end{equation}
+with coefficient~$1$ per sector, for all $t > 0$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:N1} with $f(x) = e^{-tx^2}$, which is a bounded Borel function
+making $f(D)$ trace-class (since $D$ has compact resolvent and $e^{-tx^2}$ decays
+rapidly).  \qed
+\end{proof}
+
+\noindent\textbf{Consequence for Seeley--DeWitt coefficients.}
+The small-$t$ expansion
+$K_m(t) \sim \sum_{k \geq 0} a_k^{(m)}\, t^{(k-d)/2}$
+gives Seeley--DeWitt coefficients $a_k^{(m)}$ for each sector.
+These are the building blocks of one-loop effective actions on orbifold backgrounds.
+Theorem~\ref{thm:N1} guarantees:
+\begin{equation}
+a_k = \sum_{m=0}^{r-1} a_k^{(m)},
+\end{equation}
+with no renormalization of the per-sector contributions.
+In particular, the equivariant Euler characteristic, the equivariant signature,
+and the equivariant $\hat{A}$-genus all decompose with coefficient~$1$.
+
+\begin{remark}[One-loop determinants in string theory]
+On orbifold string backgrounds $\mathcal{M}/G$, the one-loop partition function
+$Z = (\det D^2)^{-1/2}$ factorizes by twisted sector.  The coefficient~$1$ theorem
+ensures that no sector receives an anomalous weight --- the twisted-sector contributions
+to the vacuum energy are exactly $\log\det(D_m^2)$ with no cutoff-dependent
+normalization.  This is implicit in standard orbifold CFT calculations~\cite{dixon1985}
+but is not usually stated as a general theorem.
+\end{remark}
+
+%% ============================================================
+\section{Application 3: Casimir Energy on Orbifolds}
+\label{sec:casimir}
+%% ============================================================
+
+\begin{corollary}[Casimir energy decomposition]\label{cor:casimir}
+The regularized vacuum energy of a quantum field on $M/G$ is
+\begin{equation}
+E_{\mathrm{Cas}} = \frac{1}{2}\zeta_D'(0), \qquad
+\zeta_D(s) = \sum_{\lambda_n > 0} \lambda_n^{-2s},
+\end{equation}
+where the sum is over positive eigenvalues of $D$.  This decomposes as:
+\begin{equation}
+E_{\mathrm{Cas}} = \sum_{m=0}^{r-1} E_{\mathrm{Cas}}^{(m)}, \qquad
+E_{\mathrm{Cas}}^{(m)} = \frac{1}{2}(\zeta_{D_m})'(0),
+\end{equation}
+with coefficient~$1$ per sector, independent of the regularization prescription.
+\end{corollary}
+
+\begin{proof}
+The zeta function $\zeta_D(s) = \mathrm{Tr}(D^{-2s}\, \Pi_+)$ (where $\Pi_+$ projects
+onto positive eigenvalues) decomposes by sector via Theorem~\ref{thm:N1} applied to
+$f(x) = |x|^{-2s}$ in the region of absolute convergence $\mathrm{Re}(s) > d/2$,
+then extended to $s = 0$ by analytic continuation.  The continuation preserves the
+coefficient because it acts independently in each sector (the sectors are
+spectrally disjoint).  \qed
+\end{proof}
+
+\begin{remark}[Randall--Sundrum and orbifold GUTs]
+In Randall--Sundrum models~\cite{randall1999} and orbifold GUT
+compactifications~\cite{hall2002}, the Casimir energy on $S^1/\mathbb{Z}_2$
+stabilizes the extra dimension.  The $\mathbb{Z}_2$-even and $\mathbb{Z}_2$-odd
+sectors contribute independently to the Casimir force, and the coefficient~$1$
+theorem guarantees that no regularization artifact contaminates the even/odd
+decomposition.  This is physically important: the hierarchy between the
+Planck and TeV scales depends on the \emph{ratio} of even to odd Casimir contributions,
+and a scheme-dependent coefficient would destroy the prediction.
+\end{remark}
+
+%% ============================================================
+\section{Application 4: Equivariant Index Theory}
+\label{sec:index}
+%% ============================================================
+
+\begin{corollary}[Equivariant APS index]\label{cor:index}
+Let $(M, \partial M)$ be a compact Riemannian manifold with boundary, $G$ a finite
+group of isometries, and $D$ the Dirac operator with APS boundary conditions.
+The equivariant index in the $m$-th sector is:
+\begin{equation}
+\mathrm{ind}_m(D) = \mathrm{Tr}(\gamma_5\, e_m) = \mathrm{Tr}(\gamma_5|_{\mathcal{H}_m}),
+\end{equation}
+with coefficient~$1$, independent of the regularization used to define the index.
+\end{corollary}
+
+\begin{proof}
+The index can be expressed as $\mathrm{ind}_m = \mathrm{Tr}(\gamma_5\, e^{-tD^2}\, e_m)$
+for any $t > 0$ (McKean--Singer formula).  Since $G$ acts by isometries, $\gamma_5$
+commutes with the $G$-action (the chirality grading is preserved by orientation-preserving
+isometries).  By Theorem~\ref{thm:N1}, the trace decomposes with coefficient~$1$.
+Taking $t \to 0^+$ gives the index.  \qed
+\end{proof}
+
+\noindent\textbf{Connection to generation counting.}
+In the companion paper~\cite{leng2026aps}, the equivariant APS index on $B^6/\mathbb{Z}_3$
+is computed to give $N_g = 1 + 1 + 1 = 3$ --- one chiral zero mode per
+$\mathbb{Z}_3$ sector.  The coefficient~$1$ theorem is the reason this count does not
+depend on the choice of heat-kernel regulator $t$ or any other regularization parameter.
+The generation count $N_g = 3$ is a topological invariant precisely \emph{because}
+the equivariant decomposition has coefficient~$1$.
+
+Without the isometry condition, one could imagine an anomalous weighting where sector~1
+receives weight $1 + \epsilon$ and sector~2 receives weight $1 - \epsilon$ for some
+$\epsilon$ depending on the regularization.  The theorem rules this out.
+
+%% ============================================================
+\section{Application 5: Crystallographic Point Groups}
+\label{sec:crystal}
+%% ============================================================
+
+\begin{corollary}[Band structure decomposition]\label{cor:crystal}
+Let $\mathcal{H} = L^2(\mathbb{R}^3/\Lambda)$ be the Hilbert space of a crystalline
+solid with lattice $\Lambda$, and let $G$ be the point group of the crystal
+(a finite subgroup of $\mathrm{O}(3)$).  The Hamiltonian
+$H = -\nabla^2 + V(x)$, where $V$ is $G$-invariant, satisfies $[\rho(g), H] = 0$.
+The density of states per symmetry channel decomposes as:
+\begin{equation}
+\rho(\epsilon) = \sum_{m} \rho_m(\epsilon), \qquad
+\rho_m(\epsilon) = \mathrm{Tr}(\delta(\epsilon - H_m)),
+\end{equation}
+with coefficient~$1$, independent of any smearing or broadening prescription.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:N1} with $f(x) = \delta(\epsilon - x^2)$ (distributional limit
+of smooth approximations), or equivalently with $f(x) = \chi_{[\epsilon, \epsilon+d\epsilon]}(x^2)$.
+In practice, one uses a Lorentzian or Gaussian broadening $f_\sigma(x) = (\pi\sigma)^{-1}(\sigma^2 + (x^2-\epsilon)^2)^{-1}$; the theorem says the per-irrep decomposition is independent of $\sigma$.  \qed
+\end{proof}
+
+\begin{remark}[Tight-binding models]
+In tight-binding models on molecules or clusters with point-group symmetry $G$,
+the molecular orbitals classify by irreps of $G$.  The total energy
+$E_{\mathrm{tot}} = \sum_m E_m$ decomposes by irrep with coefficient~$1$.
+This is exploited routinely in computational chemistry (e.g., symmetry-adapted
+basis sets), but the underlying mathematical guarantee is precisely
+Theorem~\ref{thm:N1}.  When symmetry-breaking perturbations are introduced
+(e.g., Jahn--Teller distortions), the isometry condition~\eqref{eq:commutation}
+is violated and the clean decomposition is lost --- consistent with the
+counterexample in~\S\ref{sec:counterexample}.
+\end{remark}
+
+%% ============================================================
+\section{Non-Examples and Obstructions}
+\label{sec:obstructions}
+%% ============================================================
+
+The hypotheses of Theorem~\ref{thm:N1} --- finite group, compact resolvent,
+isometry condition --- are sharp.  We catalog the failure modes.
+
+\begin{nonexample}[Non-finite groups]\label{nonex:infinite}
+Let $G = \mathrm{U}(1)$ act on $L^2(S^1)$ by rotation.  The group algebra
+$\mathbb{C}[\mathrm{U}(1)]$ is infinite-dimensional and has no minimal central
+idempotents in the algebraic sense.  The decomposition into Fourier modes
+(irreps of $\mathrm{U}(1)$) still works spectrally, but the idempotent
+construction~\eqref{eq:idempotent} involves an integral over $G$ rather than
+a finite sum.  Theorem~\ref{thm:N1} extends to compact groups via
+the Peter--Weyl theorem, but the proof requires the additional hypothesis
+that the multiplicity spaces are finite-dimensional (automatic for compact $G$
+on compact $M$, but subtle for non-compact $M$).
+\end{nonexample}
+
+\begin{nonexample}[Continuous spectrum]\label{nonex:continuous}
+Let $D = -i\,d/dx$ on $L^2(\mathbb{R})$ (continuous spectrum, no compact resolvent).
+Let $\mathbb{Z}_2$ act by $x \mapsto -x$.  The even/odd decomposition of
+$L^2(\mathbb{R})$ is well-defined, but $\mathrm{Tr}(f(D)\, e_{\mathrm{even}})$
+is not defined for most $f$ because $f(D)$ is not trace-class.
+The theorem requires compact resolvent precisely to ensure trace-class regularity.
+\end{nonexample}
+
+\begin{nonexample}[Anti-unitary actions]\label{nonex:anti}
+Time reversal $T$ is anti-unitary: $T(c|\psi\rangle) = \bar{c}\, T|\psi\rangle$.
+The idempotent construction~\eqref{eq:idempotent} uses $\mathbb{C}$-linear
+combinations of group elements, which fails for anti-unitary operators.
+For systems with time-reversal symmetry, the relevant decomposition is by
+\emph{real} or \emph{quaternionic} representations (Dyson's threefold way),
+and the coefficient~$1$ result must be replaced by the appropriate
+Kramers multiplicity.
+\end{nonexample}
+
+\begin{nonexample}[Non-isometric diffeomorphisms]\label{nonex:diffeo}
+A diffeomorphism $\phi: M \to M$ that is not an isometry does not commute with the
+Laplacian or Dirac operator.  The pullback $\phi^*$ acts on functions but
+$[\phi^*, \Delta] \neq 0$ in general (the Laplacian depends on the metric, which
+$\phi$ does not preserve).  The counterexample in~\S\ref{sec:counterexample}
+is a concrete instance.  In such cases, the ``coefficient'' in the sector
+decomposition becomes a function of the regularization, and per-sector spectral
+quantities are not intrinsic.
+\end{nonexample}
+
+%% ============================================================
+\section{Connection to Equivariant K-Theory}
+\label{sec:ktheory}
+%% ============================================================
+
+The decomposition $\mathcal{H} = \bigoplus_{m} e_m\mathcal{H}$ is a manifestation
+of the equivariant K-theory of the algebra of observables.
+
+\begin{proposition}[K-theoretic interpretation]\label{prop:ktheory}
+Let $\mathcal{A} = C(M)$ (continuous functions on $M$) with the $G$-action
+by pullback.  The equivariant K-group $K_G^0(M)$ decomposes as:
+\begin{equation}
+K_G^0(M) \cong \bigoplus_{m=0}^{r-1} K^0(M/G) \otimes R(G)_m,
+\end{equation}
+where $R(G)_m$ is the $m$-th component of the representation ring.
+The Chern character $\mathrm{ch}: K_G^0(M) \to H_G^*(M; \mathbb{Q})$ intertwines
+the idempotent decomposition: $\mathrm{ch}(e_m \cdot [D]) = e_m \cdot \mathrm{ch}([D])$.
+Theorem~\ref{thm:N1} is the \emph{operator-trace shadow} of this K-theoretic decomposition.
+\end{proposition}
+
+\begin{remark}[Baum--Connes for finite groups]
+For finite groups, the Baum--Connes assembly map
+$\mu: K_*^G(\underline{E}G) \to K_*(C^*_r G)$
+is an isomorphism~\cite{baum-connes1994}.  The coefficient~$1$ in Theorem~\ref{thm:N1}
+reflects the fact that the assembly map for finite groups is an \emph{exact} isomorphism
+--- no correction terms, no anomalous dimensions, no renormalization.
+For infinite discrete groups, the assembly map may fail to be surjective
+(the Baum--Connes conjecture), and the clean coefficient~$1$ decomposition
+would not hold in general.  The finiteness of $G$ is therefore not merely a
+technical convenience but a reflection of the exactness of the assembly map.
+\end{remark}
+
+%% ============================================================
+\section{Generality of the Result}
+\label{sec:general}
+%% ============================================================
+
+\begin{remark}[Summary of scope]
+Theorem~\ref{thm:N1} holds for:
+\begin{enumerate}
+\item Any finite group $G$ (not just cyclic groups).
+\item Any self-adjoint operator with compact resolvent (not just the Dirac operator).
+\item Any bounded Borel function $f$ (not just smooth cutoffs).
+\item Any Riemannian manifold $M$ on which $G$ acts by isometries.
+\end{enumerate}
+The only requirement is the isometry condition~\eqref{eq:commutation}: the group action
+must commute with the operator.  For the Dirac operator on a Riemannian manifold,
+this is equivalent to requiring that $G$ act by isometries --- a geometric condition,
+not an analytic one.
+\end{remark}
+
+%% ============================================================
+\section{Summary}
+\label{sec:summary}
+%% ============================================================
+
+The coefficient one theorem (Theorem~\ref{thm:N1}) is a three-line proof with five
+applications and one counterexample:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Application} & \textbf{Eliminates} & \textbf{Section} \\
+\midrule
+Spectral action (orbifolds) & Cutoff dependence in sector corrections & \S\ref{sec:spectral-action} \\
+Heat kernel asymptotics & Ambiguity in per-sector Seeley--DeWitt coeff. & \S\ref{sec:heat} \\
+Casimir energy & Regularization artifact in sector forces & \S\ref{sec:casimir} \\
+Equivariant APS index & Regulator dependence in generation counting & \S\ref{sec:index} \\
+Band structure (crystals) & Broadening dependence in per-irrep DOS & \S\ref{sec:crystal} \\
+\midrule
+Counterexample (\S\ref{sec:counterexample}) & Shows isometry condition is necessary & \S\ref{sec:counterexample} \\
+Non-examples (\S\ref{sec:obstructions}) & Infinite $G$, continuous spectrum, anti-unitary & \S\ref{sec:obstructions} \\
+K-theory (\S\ref{sec:ktheory}) & Connects to Baum--Connes assembly map & \S\ref{sec:ktheory} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The theorem is the wrench.  The applications are the bolts.
+The tool is simple; the art is knowing where it fits.
+
+%% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{connes1996}
+A.~Connes, ``Gravity coupled with matter and the foundation of non-commutative geometry,''
+\textit{Commun.\ Math.\ Phys.}\ \textbf{182} (1996) 155.
+
+\bibitem{chamseddine2011}
+A.~H.~Chamseddine and A.~Connes, ``The uncanny precision of the spectral action,''
+\textit{Commun.\ Math.\ Phys.}\ \textbf{307} (2011) 735.
+
+\bibitem{donnelly1978}
+H.~Donnelly, ``Eta invariants for $G$-spaces,''
+\textit{Indiana Univ.\ Math.\ J.}\ \textbf{27} (1978) 889--918.
+
+\bibitem{reed-simon}
+M.~Reed and B.~Simon, \textit{Methods of Modern Mathematical Physics},
+Vol.~I: Functional Analysis, Academic Press, 1980.
+
+\bibitem{dixon1985}
+L.~Dixon, J.~Harvey, C.~Vafa, and E.~Witten, ``Strings on orbifolds,''
+\textit{Nucl.\ Phys.\ B}\ \textbf{261} (1985) 678--686.
+
+\bibitem{randall1999}
+L.~Randall and R.~Sundrum, ``A large mass hierarchy from a small extra dimension,''
+\textit{Phys.\ Rev.\ Lett.}\ \textbf{83} (1999) 3370.
+
+\bibitem{hall2002}
+L.~J.~Hall and Y.~Nomura, ``Gauge unification in higher dimensions,''
+\textit{Phys.\ Rev.\ D}\ \textbf{64} (2001) 055003.
+
+\bibitem{baum-connes1994}
+P.~Baum, A.~Connes, and N.~Higson, ``Classifying space for proper
+actions and $K$-theory of group $C^*$-algebras,''
+\textit{Contemporary Mathematics}\ \textbf{167} (1994) 241--291.
+
+\bibitem{leng2026}
+J.~Leng, ``The Resolved Chord: The Theorem of Everything,'' v10 (2026).
+
+\bibitem{leng2026aps}
+J.~Leng, ``Equivariant APS index on $B^6/\mathbb{Z}_3$ and the emergence of
+three generations,'' (2026).
+
+\bibitem{leng2026eta}
+J.~Leng, ``Eta invariants, Reidemeister torsion, and a ghost-mode identity
+on the lens space $L(3;1,1,1)$,'' (2026).
+
+\end{thebibliography}
+
+\end{document}

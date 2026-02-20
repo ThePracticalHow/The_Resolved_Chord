@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  lotus:
+    build: .
+    container_name: lotus-bloom
+    volumes:
+      - ./output:/app/output
+      - ./results:/app/results
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    command: ["python", "verification/compile_universe.py"]
+    labels:
+      - "org.opencontainers.image.title=LOTUS Model"
+      - "org.opencontainers.image.description=The Spectral Geometry of Everything"
+      - "org.opencontainers.image.version=1.0.0"
+
+  # Optional: Jupyter notebook service for interactive exploration
+  jupyter:
+    build: .
+    container_name: lotus-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - ./notebooks:/app/notebooks
+    environment:
+      - PYTHONPATH=/app
+      - JUPYTER_TOKEN=lotus
+    command: ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+    profiles:
+      - jupyter

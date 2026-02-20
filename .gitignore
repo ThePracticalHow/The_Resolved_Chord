@@ -1,0 +1,25 @@
+# Python runtime artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Test output
+.pytest_cache/
+output/
+.verification_cache.json
+
+# Temp audit scripts
+_arch_audit.py

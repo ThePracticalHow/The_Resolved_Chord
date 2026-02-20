@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "LOTUS: Lens Orbifold Theory of the Unified Spectrum"
+abstract: >-
+  Python package that compiles the Standard Model of particle physics,
+  gravity, and cosmology from the spectral geometry of S^5/Z_3.
+  87 predictions from five topological invariants with zero free parameters.
+authors:
+  - family-names: Leng
+    given-names: Jixiang
+license: MIT
+version: "1.2.0"
+date-released: "2026-02-20"
+repository-code: "https://github.com/ThePracticalHow/The_Resolved_Chord"
+url: "https://doi.org/10.5281/zenodo.18655471"
+keywords:
+  - spectral geometry
+  - standard model
+  - particle physics
+  - cosmology
+  - theory of everything
+  - orbifold
+  - Koide formula
+preferred-citation:
+  type: article
+  title: "The Resolved Chord: 82 Predictions from S^5/Z_3"
+  authors:
+    - family-names: Leng
+      given-names: Jixiang
+  year: 2026
+  doi: "10.5281/zenodo.18655471"

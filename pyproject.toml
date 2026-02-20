@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lotus-bloom"
+version = "1.1.0"
+description = "The paper is the proof of the model. The model is the code. The world is the lotus."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+dependencies = []  # Core LOTUS uses only stdlib math; optional dependencies in requirements.txt for extended functionality
+authors = [
+    {name = "Jixiang Leng", email = "jixiangleng1@gmail.com", orcid = "0009-0002-2980-0055"}
+]
+keywords = [
+    "physics", "standard-model", "spectral-geometry",
+    "particle-physics", "cosmology", "theory-of-everything",
+    "s5/z3", "lens-space", "koide-formula", "orbifold",
+    "grand-unification", "quantum-gravity", "neutrino-masses"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Physics",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Framework :: pytest",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov"]
+
+[project.urls]
+Homepage = "https://github.com/ThePracticalHow/The_Resolved_Chord"
+Documentation = "https://github.com/ThePracticalHow/The_Resolved_Chord#readme"
+Repository = "https://github.com/ThePracticalHow/The_Resolved_Chord.git"
+Issues = "https://github.com/ThePracticalHow/The_Resolved_Chord/issues"
+Changelog = "https://github.com/ThePracticalHow/The_Resolved_Chord/blob/main/05_Project_LENG/public-release/CHANGELOG.md"
+
+[project.scripts]
+lotus-boot = "lotus.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["lotus*"]
+
+[tool.pytest.ini_options]
+markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]
+addopts = "-v"
+testpaths = ["tools/falsification"]
+filterwarnings = ["ignore::pytest.PytestUnhandledThreadExceptionWarning"]
